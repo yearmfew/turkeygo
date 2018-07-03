@@ -16,7 +16,7 @@ public function __construct()
         return $this->db->where($where)->get($this->tableName)->row();
     }
 
-    /** Tüm Kayıtları bana getirecek olan metot.. */
+    /** ( istediğim sütunda )Tüm Kayıtları bana getirecek olan metot.. */
     public function get_all($where = array(), $order = "id ASC"){
 
         return $this->db->where($where)->order_by($order)->get($this->tableName)->result();

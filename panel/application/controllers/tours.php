@@ -43,7 +43,9 @@ class tours extends CI_Controller {
 	// view e gönderilecek değişkenlerin belirlenmesi
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "add";
-
+		$viewData ->items =$item 	= $this->tours_model->get_all(
+			array(), "tour_type ASC"
+		);
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}

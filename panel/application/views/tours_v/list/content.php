@@ -10,7 +10,7 @@
 		<div class="widget p-lg">
 			<?php if (empty($items)) { ?>
 				<div class="alert alert-info text-center">
-					<p>Burada herhangi bir veri bulunmamaktadır. Eklemek için lütfen <a href="<?php echo base_url("tours/tour_form"); ?>" >tıklayınız</a></p>
+					<p>Burada herhangi bir veri bulunmamaktadır. Eklemek için lütfen <a href="<?php echo base_url("tours/new_form"); ?>" >tıklayınız</a></p>
 				</div>
 			<?php } else { ?>
 				<div class="table-responsive">
@@ -20,11 +20,10 @@
 						<thead>
 							<th class="order"><i class="fa fa-reorder"></i></th>
 							<th class="w50">#id</th>
-							<th class="w150">Baslik</th>
+							<th class="w150">Tur Adı</th>
 							<!-- <th>url</th> -->
 							<th class="w250">Açıklama</th>
-							<th>Haber Türü</th>
-							<th class="w100">Görsel</th>						
+							<th>Tur Tipi</th>													
 							<th class="w50">Durumu</th>
 							<th>İşlemler</th>
 						</thead>
@@ -36,67 +35,38 @@
 									<td ><?php echo $item->title; ?></td>
 									<!-- <td><?php echo $item->url; ?></td> -->
 									<td ><?php echo $item->description; ?></td>								
-									<td class="order"> <?php if ($item->tours_type == "image"){ ?>
-										<i class="fa fa-image"> </i>									
-									<?php } elseif ($item->tours_type == "video") {
-										?>
+									<td ><?php echo $item->tour_type; ?>	</td>
 
-										<i class="fa fa-video-camera"> </i>
-									<?php } ?>
+
+
+
+									<td class="text-center">			
+										<input 
+										data-url = "<?php echo base_url("tours/isActiveSetter/$item->id"); ?>"
+										class="isActive"
+										type="checkbox" 
+										data-size="small"
+										data-switchery 
+										data-color="#10c469" 
+										<?php echo ($item ->isActive) ? "checked" : ""; ?>
+										/>
+									</td>
+									<td class="">
+										<a href="<?php echo base_url("tours/update_form/$item->id"); ?> " class="btn btn-xs btn-info btn-outline"><i class="fa fa-pencil-square-o"></i>Düzenle</a>
+										<a href="<?php echo base_url("tours/update_form/$item->id"); ?> " class="btn btn-xs btn-dark btn-outline"><i class="fa fa-image"></i>Tour Images</a>
+										<button
+										data-url="<?php echo base_url("tours/delete/$item->id"); ?>"
+										class="btn btn-xs btn-danger btn-outline remove-btn">
+										<i class="fa fa-trash"></i> Sil
+									</button>
+									
 								</td>
-								
-
-
-								<td>   
-
-									<?php if($item->tours_type == "image") { ?>
-
-										<img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
-										alt=""
-										class="img-rounded">
-
-									<?php } else if($item->tours_type == "video") { ?>
-
-										<iframe
-										width="100"
-										src="<?php echo $item->video_url; ?>"
-										frameborder="0"
-										gesture="media"
-										allow="encrypted-media"
-										allowfullscreen>
-
-									</iframe>
-
-								<?php } ?>
-
-
-							</td>
-							<td class="text-center">			
-								<input 
-								data-url = "<?php echo base_url("tours/isActiveSetter/$item->id"); ?>"
-								class="isActive"
-								type="checkbox" 
-								data-size="small"
-								data-switchery 
-								data-color="#10c469" 
-								<?php echo ($item ->isActive) ? "checked" : ""; ?>
-								/>
-							</td>
-							<td class="text-center">
-								<button
-								data-url="<?php echo base_url("tours/delete/$item->id"); ?>"
-								class="btn btn-xs btn-danger btn-outline remove-btn">
-								<i class="fa fa-trash"></i> Sil
-							</button>
-							<a href="<?php echo base_url("tours/update_form/$item->id"); ?> " class="btn btn-xs btn-info btn-outline"><i class="fa fa-pencil-square-o"></i>Düzenle</a>
-
-						</td>
-					</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	<?php } ?>
-</div>
-</div><!-- .widget -->
+							</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			<?php } ?>
+		</div>
+	</div><!-- .widget -->
 </div><!-- END column -->
 </div>

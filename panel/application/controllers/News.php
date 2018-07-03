@@ -4,14 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class News extends CI_Controller {
 
 	public $viewFolder = "";
-	public $conrollerName = "";
 
 	public function __construct()
 	{
 		parent::__construct();
 
 		$this->viewFolder = "news_v";
-		$this->controllerName = "news";
 		$this->load->model("news_model");
 
 		if (!get_active_user()) {
@@ -30,7 +28,7 @@ class News extends CI_Controller {
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "list";
 		$viewData ->items 			= $items;
-		$viewData ->controllerName  =$this->controllerName;
+
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}

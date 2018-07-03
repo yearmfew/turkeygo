@@ -95,6 +95,12 @@
         </a>
       </li>
       <li>
+        <a href="<?php echo base_url("tours"); ?>">
+          <i class="menu-icon fa fa-suitcase"></i>
+          <span class="menu-text">Turlar</span>
+        </a>
+      </li>
+      <li>
         <a href="<?php echo base_url("product"); ?>">
           <i class="menu-icon fa fa-cubes"></i>
           <span class="menu-text">Ürünler</span>

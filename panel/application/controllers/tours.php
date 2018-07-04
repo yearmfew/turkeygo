@@ -18,14 +18,13 @@ class tours extends CI_Controller {
 			redirect(base_url("login"));
 		}
 	}
-	public function index()
-	{
+	public function index()	{
 		$viewData = new stdClass();
-// veri tabanından verilerin getirilmesi
+		// veri tabanından verilerin getirilmesi
 		$items = $this->tours_model->get_all(
 			array(), "rank ASC");
 
-// view e gönderilecek değişkenlerin belirlenmesi
+		// view e gönderilecek değişkenlerin belirlenmesi
 
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "list";
@@ -36,17 +35,14 @@ class tours extends CI_Controller {
 	}
 
 
-	public function new_form()
-	{
-
+	public function new_form(){
 		$viewData = new stdClass();
-	// view e gönderilecek değişkenlerin belirlenmesi
+		// view e gönderilecek değişkenlerin belirlenmesi
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "add";
 		$viewData ->items =$item 	= $this->tours_model->get_all(
 			array(), "tour_type ASC"
 		);
-
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
 
@@ -57,28 +53,178 @@ class tours extends CI_Controller {
 
         // Kurallar yazilir..
 
-		$tours_type = $this->input->post("tours_type");
+		$detail_type = $this->input->post("detail_type");
 
-		if($tours_type == "image"){
+		switch ($detail_type) {
+			case 'auto':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("description", "Tur Tipi", "required");
+			$this->form_validation->set_rules("itinerary", "Tur Tipi", "required");
 
-			if($_FILES["img_url"]["name"] == ""){
 
-				$alert = array(
-					"title" => "İşlem Başarısız",
-					"text" => "Lütfen bir görsel seçiniz",
-					"type"  => "error"
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
+
+			break;
+			case 'manual':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("description", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("itinerary", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+
+
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
+			break;
+			case 'overwrite':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("description", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("itinerary", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
+			break;
+			default:
+			break;
+		}
+
+        // Form Validation Calistirilir..
+		$validate = $this->form_validation->run();
+		if ($validate) {			
+			switch ($detail_type) {
+				case 'auto':
+				$data = array(
+					"title"     	=> $this->input->post("title"),
+					"url"           => convertToSEO($this->input->post("title")),
+					"tour_type"		=> $this->input->post("tour_type"),
+					"inbrief"     	=> $this->input->post("description"),
+					"itinerary"     => $this->input->post("itinerary"),
+					"all_details"   => "auto",                   
+					"rank"      	=> 0,
+					"isActive"      => 1,
+					"createdAt"     => date("Y-m-d H:i:s"),
 				);
 
-                // İşlemin Sonucunu Session'a yazma işlemi...
-				$this->session->set_flashdata("alert", $alert);
-
-				redirect(base_url("tours/new_form"));
-
-				die();
+				break;
+				case 'manual':
+				$data = array(
+					"title"     	=> $this->input->post("title"),
+					"url"           => convertToSEO($this->input->post("title")),
+					"tour_type"		=> $this->input->post("tour_type"),
+					"inbrief"     	=> $this->input->post("description"),
+					"itinerary"     => $this->input->post("itinerary"),
+					"all_details"   => $this->input->post("manual_tour_details"),                  
+					"rank"      	=> 0,
+					"isActive"      => 1,
+					"createdAt"     => date("Y-m-d H:i:s"),
+				);
+				break;
+				case 'overwrite':
+				$data = array(
+					"title"     	=> $this->input->post("title"),
+					"url"           => convertToSEO($this->input->post("title")),
+					"tour_type"		=> $this->input->post("tour_type"),
+					"inbrief"     	=> $this->input->post("description"),
+					"itinerary"     => $this->input->post("itinerary"),
+					"all_details"   => $this->input->post("overwrite_tour_details"),                  
+					"rank"      	=> 0,
+					"isActive"      => 1,
+					"createdAt"     => date("Y-m-d H:i:s"),
+				);
+				break;
+				default:
+				break;
 			}
 
+			$insert = $this->tours_model->add($data);
+			if ($insert) {
+				$alert = array(
+					"title" => "Tebrikler",
+					"text" => "Tur eklendi",
+					"type" => "success"
+				);
 
-		} else if($tours_type == "video"){
+
+
+			} 
+			else{
+
+				$alert = array(
+					"title" => "Tebrikler",
+					"text" => "Tur eklendi",
+					"type" => "success"
+				);
+
+		
+			}
+				$this->session->set_flashdata("alert", $alert);
+				redirect(base_url("tours"));
+
+				die();
+
+
+		} else{ 
+			
+			   $viewData = new stdClass();
+
+            /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+            $viewData->viewFolder = $this->viewFolder;
+            $viewData->subViewFolder = "add";
+            $viewData->form_error = true;
+            $viewData->detail_type = $detail_type;
+        	$viewData ->items =$item 	= $this->tours_model->get_all(
+			array(), "tour_type ASC"
+		);
+
+            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+			//TODO alert sistemi
+
+		}
+
+	} 
+	public function update_form($id){
+
+		$viewData = new stdClass();
+
+		/** Tablodan Verilerin Getirilmesi.. */
+		$item = $this->tours_model->get(
+			array(
+				"id"    => $id,
+			)
+		);
+
+		/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+		$viewData->viewFolder = $this->viewFolder;
+		$viewData->subViewFolder = "update";
+		$viewData->item = $item;
+
+		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+
+	}
+
+	public function update($id){
+
+		$this->load->library("form_validation");
+
+        // Kurallar yazilir..
+
+		$tours_type = $this->input->post("tours_type");
+
+		if($tours_type == "video"){
 
 			$this->form_validation->set_rules("video_url", "Video URL", "required|trim");
 
@@ -101,45 +247,55 @@ class tours extends CI_Controller {
 
                 // Upload Süreci...
 
-				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$config["allowed_types"] = "jpg|jpeg|png";
-				$config["upload_path"]   = "uploads/$this->viewFolder/";
-				$config["file_name"] = $file_name;
+				if($_FILES["img_url"]["name"] !== "") {
 
-				$this->load->library("upload", $config);
+					$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$upload = $this->upload->do_upload("img_url");
+					$config["allowed_types"] = "jpg|jpeg|png";
+					$config["upload_path"] = "uploads/$this->viewFolder/";
+					$config["file_name"] = $file_name;
 
-				if($upload){
+					$this->load->library("upload", $config);
 
-					$uploaded_file = $this->upload->data("file_name");
+					$upload = $this->upload->do_upload("img_url");
 
-					$data = array(
-						"title"         => $this->input->post("title"),
-						"description"   => $this->input->post("description"),
-						"url"           => convertToSEO($this->input->post("title")),
-						"tours_type"     => $tours_type,
-						"img_url"       => $uploaded_file,
-						"video_url"     => "#",
-						"rank"          => 0,
-						"isActive"      => 1,
-						"createdAt"     => date("Y-m-d H:i:s")
-					);
+					if ($upload) {
+
+						$uploaded_file = $this->upload->data("file_name");
+
+						$data = array(
+							"title" => $this->input->post("title"),
+							"description" => $this->input->post("description"),
+							"url" => convertToSEO($this->input->post("title")),
+							"tours_type" => $tours_type,
+							"img_url" => $uploaded_file,
+							"video_url" => "#",
+						);
+
+					} else {
+
+						$alert = array(
+							"title" => "İşlem Başarısız",
+							"text" => "Görsel yüklenirken bir problem oluştu",
+							"type" => "error"
+						);
+
+						$this->session->set_flashdata("alert", $alert);
+
+						redirect(base_url("tours/update_form/$id"));
+
+						die();
+
+					}
 
 				} else {
 
-					$alert = array(
-						"title" => "İşlem Başarısız",
-						"text" => "Görsel yüklenirken bir problem oluştu",
-						"type"  => "error"
+					$data = array(
+						"title" => $this->input->post("title"),
+						"description" => $this->input->post("description"),
+						"url" => convertToSEO($this->input->post("title")),
 					);
-
-					$this->session->set_flashdata("alert", $alert);
-
-					redirect(base_url("tours/new_form"));
-
-					die();
 
 				}
 
@@ -151,22 +307,19 @@ class tours extends CI_Controller {
 					"url"           => convertToSEO($this->input->post("title")),
 					"tours_type"     => $tours_type,
 					"img_url"       => "#",
-					"video_url"     => $this->input->post("video_url"),
-					"rank"          => 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s")
+					"video_url"     => $this->input->post("video_url")
 				);
 
 			}
 
-			$insert = $this->tours_model->add($data);
+			$update = $this->tours_model->update(array("id" => $id), $data);
 
             // TODO Alert sistemi eklenecek...
-			if($insert){
+			if($update){
 
 				$alert = array(
 					"title" => "İşlem Başarılı",
-					"text" => "Kayıt başarılı bir şekilde eklendi",
+					"text" => "Kayıt başarılı bir şekilde güncellendi",
 					"type"  => "success"
 				);
 
@@ -174,7 +327,7 @@ class tours extends CI_Controller {
 
 				$alert = array(
 					"title" => "İşlem Başarısız",
-					"text" => "Kayıt Ekleme sırasında bir problem oluştu",
+					"text" => "Kayıt Güncelleme sırasında bir problem oluştu",
 					"type"  => "error"
 				);
 			}
@@ -190,177 +343,21 @@ class tours extends CI_Controller {
 
 			/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
 			$viewData->viewFolder = $this->viewFolder;
-			$viewData->subViewFolder = "add";
+			$viewData->subViewFolder = "update";
 			$viewData->form_error = true;
 			$viewData->tours_type = $tours_type;
+
+			/** Tablodan Verilerin Getirilmesi.. */
+			$viewData->item = $this->tours_model->get(
+				array(
+					"id"    => $id,
+				)
+			);
 
 			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 		}
 
 	}
-	public function update_form($id){
-
-		$viewData = new stdClass();
-
-		/** Tablodan Verilerin Getirilmesi.. */
-		$item = $this->tours_model->get(
-			array(
-				"id"    => $id,
-			)
-		);
-
-		/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-		$viewData->viewFolder = $this->viewFolder;
-		$viewData->subViewFolder = "update";
-		$viewData->item = $item;
-
-		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-
-
-	}
-
-    public function update($id){
-
-        $this->load->library("form_validation");
-
-        // Kurallar yazilir..
-
-        $tours_type = $this->input->post("tours_type");
-
-        if($tours_type == "video"){
-
-            $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
-
-        }
-
-        $this->form_validation->set_rules("title", "Başlık", "required|trim");
-
-        $this->form_validation->set_message(
-            array(
-                "required"  => "<b>{field}</b> alanı doldurulmalıdır"
-            )
-        );
-
-        // Form Validation Calistirilir..
-        $validate = $this->form_validation->run();
-
-        if($validate){
-
-            if($tours_type == "image"){
-
-                // Upload Süreci...
-
-
-                if($_FILES["img_url"]["name"] !== "") {
-
-                    $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
-
-                    $config["allowed_types"] = "jpg|jpeg|png";
-                    $config["upload_path"] = "uploads/$this->viewFolder/";
-                    $config["file_name"] = $file_name;
-
-                    $this->load->library("upload", $config);
-
-                    $upload = $this->upload->do_upload("img_url");
-
-                    if ($upload) {
-
-                        $uploaded_file = $this->upload->data("file_name");
-
-                        $data = array(
-                            "title" => $this->input->post("title"),
-                            "description" => $this->input->post("description"),
-                            "url" => convertToSEO($this->input->post("title")),
-                            "tours_type" => $tours_type,
-                            "img_url" => $uploaded_file,
-                            "video_url" => "#",
-                        );
-
-                    } else {
-
-                        $alert = array(
-                            "title" => "İşlem Başarısız",
-                            "text" => "Görsel yüklenirken bir problem oluştu",
-                            "type" => "error"
-                        );
-
-                        $this->session->set_flashdata("alert", $alert);
-
-                        redirect(base_url("tours/update_form/$id"));
-
-                        die();
-
-                    }
-
-                } else {
-
-                    $data = array(
-                        "title" => $this->input->post("title"),
-                        "description" => $this->input->post("description"),
-                        "url" => convertToSEO($this->input->post("title")),
-                    );
-
-                }
-
-            } else if($tours_type == "video"){
-
-                $data = array(
-                    "title"         => $this->input->post("title"),
-                    "description"   => $this->input->post("description"),
-                    "url"           => convertToSEO($this->input->post("title")),
-                    "tours_type"     => $tours_type,
-                    "img_url"       => "#",
-                    "video_url"     => $this->input->post("video_url")
-                );
-
-            }
-
-            $update = $this->tours_model->update(array("id" => $id), $data);
-
-            // TODO Alert sistemi eklenecek...
-            if($update){
-
-                $alert = array(
-                    "title" => "İşlem Başarılı",
-                    "text" => "Kayıt başarılı bir şekilde güncellendi",
-                    "type"  => "success"
-                );
-
-            } else {
-
-                $alert = array(
-                    "title" => "İşlem Başarısız",
-                    "text" => "Kayıt Güncelleme sırasında bir problem oluştu",
-                    "type"  => "error"
-                );
-            }
-
-            // İşlemin Sonucunu Session'a yazma işlemi...
-            $this->session->set_flashdata("alert", $alert);
-
-            redirect(base_url("tours"));
-
-        } else {
-
-            $viewData = new stdClass();
-
-            /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-            $viewData->viewFolder = $this->viewFolder;
-            $viewData->subViewFolder = "update";
-            $viewData->form_error = true;
-            $viewData->tours_type = $tours_type;
-
-            /** Tablodan Verilerin Getirilmesi.. */
-            $viewData->item = $this->tours_model->get(
-                array(
-                    "id"    => $id,
-                )
-            );
-
-            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-        }
-
-    }
 
 	public function update_($id){
 

@@ -22,7 +22,7 @@
 							<th class="w50">#id</th>
 							<th class="w150">Tur Adı</th>
 							<!-- <th>url</th> -->
-							<th class="w250">Açıklama</th>
+							<th class="w250">Özet (In Brief)</th>
 							<th>Tur Tipi</th>													
 							<th class="w50">Durumu</th>
 							<th>İşlemler</th>
@@ -34,12 +34,8 @@
 									<td><?php echo $item->id; ?> </td>
 									<td ><?php echo $item->title; ?></td>
 									<!-- <td><?php echo $item->url; ?></td> -->
-									<td ><?php echo $item->description; ?></td>								
+									<td ><?php echo word_limiter($item->inbrief, 5); ?></td>								
 									<td ><?php echo $item->tour_type; ?>	</td>
-
-
-
-
 									<td class="text-center">			
 										<input 
 										data-url = "<?php echo base_url("tours/isActiveSetter/$item->id"); ?>"

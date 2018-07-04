@@ -22,7 +22,7 @@
 							<th class="w50">#id</th>
 							<th class="w150">Baslik</th>
 							<!-- <th>url</th> -->
-							<th class="w250">Açıklama</th>
+							<th class="w250">Özet(In brief)</th>
 							<th>Haber Türü</th>
 							<th class="w100">Görsel</th>						
 							<th class="w50">Durumu</th>
@@ -35,7 +35,7 @@
 									<td><?php echo $item->id; ?> </td>
 									<td ><?php echo $item->title; ?></td>
 									<!-- <td><?php echo $item->url; ?></td> -->
-									<td ><?php echo $item->description; ?></td>								
+									<td ><?php echo word_limiter($item->inbrief, 5); ?></td>								
 									<td class="order"> <?php if ($item->news_type == "image"){ ?>
 										<i class="fa fa-image"> </i>									
 									<?php } elseif ($item->news_type == "video") {

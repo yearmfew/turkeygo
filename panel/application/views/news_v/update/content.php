@@ -18,12 +18,14 @@
                     <div class="form-group">
                         <label>Açıklama</label>
                         <textarea name="description" class="m-0" data-plugin="summernote" data-options="{height: 250}">
-                         <?php echo $item->description; ?>
+                           <?php echo $item->description; ?>
+                       </textarea>
+                       <?php if(isset($form_error)){ ?>
+                        <small class="pull-right input-form-error"> <?php echo form_error("description"); ?></small>
+                    <?php } ?>
+                </div>
 
-                     </textarea>
-                 </div>
-
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="control-demo-6" class="">Haberin Türü</label>
                     <div id="control-demo-6" class="">
 

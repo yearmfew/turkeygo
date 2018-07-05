@@ -49,7 +49,7 @@
 									</td>
 									<td class="">
 										<a href="<?php echo base_url("tours/update_form/$item->id"); ?> " class="btn btn-xs btn-info btn-outline"><i class="fa fa-pencil-square-o"></i>Düzenle</a>
-										<a href="<?php echo base_url("tours/update_form/$item->id"); ?> " class="btn btn-xs btn-dark btn-outline"><i class="fa fa-image"></i>Tour Images</a>
+										<a href="<?php echo base_url("tours/image_form/$item->id"); ?> " class="btn btn-xs btn-dark btn-outline"><i class="fa fa-image"></i>Tour Images</a>
 										<button
 										data-url="<?php echo base_url("tours/delete/$item->id"); ?>"
 										class="btn btn-xs btn-danger btn-outline remove-btn">

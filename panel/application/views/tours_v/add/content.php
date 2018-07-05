@@ -11,10 +11,11 @@
                 <form action="<?php echo base_url("tours/save"); ?>" method="post" >
                     <div class="form-group">
                         <label>Tur Adı</label>
-                        <input class="form-control" placeholder="Tur Adını Giriniz" name="title">
-                        <?php if(isset($form_error)){ ?>
+                         <?php if(isset($form_error)){ ?>
                             <small class="pull-right input-form-error"> <?php echo form_error("title"); ?></small>
                         <?php } ?>
+                        <input class="form-control" placeholder="Tur Adını Giriniz" name="title">
+                       
                     </div>
                     <div class="form-group">
                         <label for="control-demo-6" class="">Tur Tipi</label>
@@ -31,29 +32,39 @@
                     </div>
                     <div class="form-group">
                         <label>In Brief</label>
+                          <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("inbrief"); ?></small>
+                        <?php } ?>
                         <textarea
-                        name="description" 
+                        name="inbrief" 
                         class="m-0" 
                         data-plugin="summernote" 
                         data-options="{height: 100}"
                         >  </textarea>
+                        
                     </div>
                     <div class="form-group">
                         <label>Itinerary</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("itinerary"); ?></small>
+                        <?php } ?>
                         <textarea
                         name="itinerary" 
                         class="m-0" 
                         data-plugin="summernote" 
                         data-options="{height: 100}"
-                        >  </textarea>
+                        >
+                          </textarea>
+                          
                     </div>
                     <div class="form-group">
-                        <label for="control-demo-6" class="">Tur Ayrıntıları</label>
+                        <label for="control-demo-6" class="">Tur Ayrıntılarını Nasıl Girmek İstersiniz?</label>
                         <div id="control-demo-6" class="">
                             <select class="form-control detail_type_select" name="detail_type">
                                 <option <?php echo (isset($detail_type) && $detail_type == "auto") ? "selected" : ""; ?> value="auto">Otomatik oluştur</option>
                                 <option <?php echo (isset($detail_type) && $detail_type == "manual") ? "selected" : ""; ?> value="manual">Kendim gireceğim</option>
                                 <option <?php echo (isset($detail_type) && $detail_type == "overwrite") ? "selected" : ""; ?> value="overwrite">Ekstra bilgi gireceğim</option>
+
                             </select>
                         </div>
                     </div><!-- .form-group -->
@@ -65,30 +76,43 @@
                            <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları inbrief ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
                        </div>
 
-                       <div class="form-group manual_container" style="display: <?php echo ($detail_type == "manual") ? "block" : "none"; ?>">
-                           <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
-                           <?php if(isset($form_error)){ ?>
-                            <small class="pull-right input-form-error"> <?php echo form_error("tour_details"); ?></small>
-                        <?php } ?>
+                       <div class="form-group manual_container" style="display: <?php echo ($detail_type == "manual") ? "block" : "none"; ?>" >    
+                        <label>Tur Ayrıntıları</label>
+                          <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
+                        <?php } ?> 
+                           <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" value="manual_tour_details"  data-options="{height: 250}"></textarea>
+                        
                     </div>
 
-                    <div class="form-group overwrite_container" style="display: <?php echo ($detail_type == "overwrite") ? "block" : "none"; ?>">
-                       <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
-                       <?php if(isset($form_error)){ ?>
+                    <div class="form-group overwrite_container" style="display: <?php echo ($detail_type == "overwrite") ? "block" : "none"; ?>">   
+                      <label>Tur Ayrıntıları</label>
+                            <?php if(isset($form_error)){ ?>
                         <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
                     <?php } ?>
+                       <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote"  data-options="{height: 250}"></textarea>
+                   
                 </div>
             <?php } else { ?>
 
                 <div class="form-group auto_container">
-                    <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları inbrief ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
+                    <input type="text" readonly name="auto" class="form-control"  >
                 </div>
 
                 <div class="form-group manual_container">
+                        <label>Tur Ayrıntıları</label>
+                      <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
+                        <?php } ?>
                     <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+                  
                 </div>
                 <div class="form-group overwrite_container">
+                         <label>Tur Ayrıntıları</label>
                     <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+                    <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
+                        <?php } ?>
                 </div>
             <?php } ?>
             <button type="submit" class="btn btn-primary btn-xs btn-outline">Kaydet</button>

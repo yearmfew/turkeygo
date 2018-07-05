@@ -215,7 +215,7 @@ class News extends CI_Controller {
 
 	}
 
-    public function update($id){
+  public function update($id){
 
         $this->load->library("form_validation");
 

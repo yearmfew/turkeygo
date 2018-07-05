@@ -25,14 +25,14 @@ $(".detail_type_select").change(function(){
 
 if($(this).val() === "auto"){
 	$(".manual_container").hide();
-	$(".auto_container").fadeIn();
+	$(".overwrite_container").hide();
 	$(".auto_container").fadeIn();
 
 }else if($(this).val() === "manual"){
 
 	$(".auto_container").hide();
-	$(".manual_container").fadeIn();
 	$(".overwrite_container").hide();
+	$(".manual_container").fadeIn();
 
 } else if($(this).val() === "overwrite"){
 

@@ -10,7 +10,7 @@ class Userop extends CI_Controller {
 		parent::__construct();
 
 		$this->viewFolder = "users_v";
-		$this->load->model("user_model");
+		$this->load->model("users_model");
 
 	}
 
@@ -61,7 +61,7 @@ class Userop extends CI_Controller {
 
 		if($validate) {
 
-			$user = $this->user_model->get(
+			$user = $this->users_model->get(
 				array(
 					"email" 	=>$this->input->post("user_email"),
 					"password" 	=>md5($this->input->post("user_password")),

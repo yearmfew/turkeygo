@@ -1,6 +1,6 @@
 <?php
 
-class Users extends CI_Controller
+class SocialMedia extends CI_Controller
 {
     public $viewFolder = "";
 
@@ -9,9 +9,9 @@ class Users extends CI_Controller
 
         parent::__construct();
 
-        $this->viewFolder = "users_v";
+        $this->viewFolder = "socialMedia_v";
 
-        $this->load->model("users_model");
+        $this->load->model("socialMedia_model");
 
         if (!get_active_user()) {
             redirect(base_url("login"));
@@ -24,7 +24,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $items = $this->users_model->get_all(
+        $items = $this->socialMedia_model->get_all(
             array() 
         );
 
@@ -53,20 +53,13 @@ class Users extends CI_Controller
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
-        $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim|is_unique[users.user_name]");
-        $this->form_validation->set_rules("full_name", "Ad Soyad", "required|trim");
-        $this->form_validation->set_rules("email", "E-mail", "required|trim|valid_email|is_unique[users.email]");
-        $this->form_validation->set_rules("password", "Şifre", "required|trim|min_length[6]|max_length[8]");
-        $this->form_validation->set_rules("re_password", "Şifre Tekrar", "required|trim|min_length[6]|max_length[8]|matches[password]");
+        $this->form_validation->set_rules("title", "Sosyal Medya Adı", "required|trim");
+        $this->form_validation->set_rules("url", "url", "required|trim");
+
 
         $this->form_validation->set_message(
             array(
-                "required"      =>"<b>{field}</b> alanı doldurulmalıdır",
-                "valid_email"   =>"lütfen geçerli bir E-posta adresi giriniz",
-                "is_unique"     =>"<b>{field}</b> daha önceden kullanılmıştır..",
-                "matches"       =>"<b>{field}</b> girdiğiniz şifreler birbiri ile uyuşmuyor",
-                "min_length"    =>"Şifreniz 6 karakterden az olmamalıdır",
-                "max_length"    =>"Şifreniz 8 karakterden fazla olmamalıdır"
+                "required"      =>"<b>{field}</b> alanı doldurulmalıdır"
 
             )
         );
@@ -78,12 +71,10 @@ class Users extends CI_Controller
 
             // Upload Süreci...
 
-            $insert = $this->users_model->add(
+            $insert = $this->socialMedia_model->add(
                 array(
-                    "user_name"     => $this->input->post("user_name"),
-                    "full_name"     => $this->input->post("full_name"),
-                    "email"         => $this->input->post("email"),
-                    "password"      => md5($this->input->post("password")),                  
+                    "title"         => $this->input->post("title"),
+                    "url"           => $this->input->post("url"),               
                     "isActive"      => 1,
                     "createdAt"     => date("Y-m-d H:i:s"),
                 )
@@ -110,7 +101,7 @@ class Users extends CI_Controller
 
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("users"));
+            redirect(base_url("socialMedia"));
             die();
 
 
@@ -134,7 +125,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->users_model->get(
+        $item = $this->socialMedia_model->get(
             array(
                 "id"    => $id,
             )
@@ -156,7 +147,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->users_model->get(
+        $item = $this->socialMedia_model->get(
             array(
                 "id"    => $id,
             )
@@ -178,29 +169,13 @@ class Users extends CI_Controller
 
         $this->load->library("form_validation");
 
-        $oldUser = $this->users_model->get(array(
-            "id" =>$id
-        ));
-
-        if($oldUser->user_name != $this->input->post("user_name")){
-            $this->form_validation->set_rules("user_name", "Kullanıcı Adı", "required|trim");
-
-        }
-
-        if($oldUser->email != $this->input->post("email")){
-            $this->form_validation->set_rules("email", "E-mail", "required|trim|valid_email");
-            
-        }
-
-
-        $this->form_validation->set_rules("full_name", "Ad Soyad", "required|trim");
+        $this->form_validation->set_rules("title", "Sosyal Medya Adı", "required|trim");
+        $this->form_validation->set_rules("url", "url", "required|trim");
 
 
         $this->form_validation->set_message(
             array(
-                "required"      =>"<b>{field}</b> alanı doldurulmalıdır",
-                "valid_email"   =>"lütfen geçerli bir E-posta adresi giriniz",
-                "is_unique"     =>"<b>{field}</b> daha önceden kullanılmıştır.."             
+                "required"      =>"<b>{field}</b> alanı doldurulmalıdır"
 
             )
         );
@@ -212,11 +187,10 @@ class Users extends CI_Controller
 
 
 
-            $insert = $this->users_model->update(array("id" => $id),
+            $insert = $this->socialMedia_model->update(array("id" => $id),
                 array(
-                    "user_name"     => $this->input->post("user_name"),
-                    "full_name"     => $this->input->post("full_name"),
-                    "email"         => $this->input->post("email"),
+                   "title"         => $this->input->post("title"),
+                    "url"           => $this->input->post("url")    
 
                 )
             );
@@ -242,7 +216,7 @@ class Users extends CI_Controller
 
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("users"));
+            redirect(base_url("socialMedia"));
             die();
 
 
@@ -254,7 +228,7 @@ class Users extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
-            $viewData->item = $this->users_model->get(
+            $viewData->item = $this->socialMedia_model->get(
                 array(
                     "id"    => $id,
                 )
@@ -265,68 +239,11 @@ class Users extends CI_Controller
 
     }
 
-    public function update_password($id){
-
-        $this->load->library("form_validation");
-
-        $this->form_validation->set_rules("password", "Şifre", "required|trim|min_length[6]|max_length[8]");
-        $this->form_validation->set_rules("re_password", "Şifre Tekrar", "required|trim|min_length[6]|max_length[8]|matches[password]");
-        $this->form_validation->set_message(
-            array(
-                "required"      =>"<b>{field}</b> alanı doldurulmalıdır",        
-                "matches"       =>"<b>{field}</b> girdiğiniz şifreler birbiri ile uyuşmuyor",
-                "min_length"    =>"Şifreniz 6 karakterden az olmamalıdır",
-                "max_length"    =>"Şifreniz 8 karakterden fazla olmamalıdır"
-            )
-        );
-        // Form Validation Calistirilir..
-        $validate = $this->form_validation->run();
-
-        if($validate){
-            $insert = $this->users_model->update(array("id" => $id),
-                array(
-                    "password"     => md5($this->input->post("password")),                  
-                )
-            );
-            if($insert){
-                $alert = array(
-                    "title" => "İşlem Başarılı",
-                    "text" => "Şifreniz başarılı bir şekilde güncellendi",
-                    "type"  => "success"
-                );
-            } else {
-
-                $alert = array(
-                    "title" => "İşlem Başarısız",
-                    "text" => "Güncelleme sırasında bir problem oluştu",
-                    "type"  => "error"
-                );
-            }
-
-
-            $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("users"));
-            die();
-        }  else {
-            $viewData = new stdClass();
-            /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-            $viewData->viewFolder = $this->viewFolder;
-            $viewData->subViewFolder = "password";
-            $viewData->form_error = true;
-            $viewData->item = $this->users_model->get(
-                array(
-                    "id"    => $id,
-                )
-            );
-
-            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-        }
-
-    }
+  
 
     public function delete($id){
 
-        $delete = $this->users_model->delete(
+        $delete = $this->socialMedia_model->delete(
             array(
                 "id"    => $id
             )
@@ -353,7 +270,7 @@ class Users extends CI_Controller
         }
 
         $this->session->set_flashdata("alert", $alert);
-        redirect(base_url("users"));
+        redirect(base_url("socialMedia"));
 
 
     }
@@ -364,7 +281,7 @@ class Users extends CI_Controller
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
-            $this->users_model->update(
+            $this->socialMedia_model->update(
                 array(
                     "id"    => $id
                 ),
@@ -379,6 +296,7 @@ class Users extends CI_Controller
 
 
         $data = $this->input->post("data");
+    
 
         parse_str($data, $order);
 
@@ -386,7 +304,7 @@ class Users extends CI_Controller
 
         foreach ($items as $rank => $id){
 
-            $this->users_model->update(
+            $this->socialMedia_model->update(
                 array(
                     "id"        => $id,
                     "rank !="   => $rank
@@ -397,7 +315,7 @@ class Users extends CI_Controller
             );
 
         }
-            }
+    }
 
 
 

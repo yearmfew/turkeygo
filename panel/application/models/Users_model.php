@@ -1,9 +1,9 @@
 <?php
 
-class userss_model extends CI_Model
+class users_model extends CI_Model
 {
 
-    public $tableName = "users2";
+    public $tableName = "users";
 
     public function __construct()
     {

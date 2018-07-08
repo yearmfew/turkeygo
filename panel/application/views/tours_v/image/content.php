@@ -11,7 +11,7 @@
                       action="<?php echo base_url("tours/image_upload/$item->id"); ?> "
                       class="dropzone"
                       id="dropzone"
-                      enctype="multipart/form-data"
+                     
                       data-plugin="dropzone"
                       data-options="{ url: '<?php echo base_url("tours/image_upload/$item->id"); ?>'}">
                     <div class="dz-message">

@@ -81,7 +81,7 @@
                           <?php if(isset($form_error)){ ?>
                             <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
                         <?php } ?> 
-                           <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" value="manual_tour_details"  data-options="{height: 250}"></textarea>
+                           <textarea name="manual_tour_details" class="m-0" data-plugin="summernote"   data-options="{height: 250}"></textarea>
                         
                     </div>
 

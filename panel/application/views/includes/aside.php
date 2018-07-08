@@ -35,6 +35,7 @@
                     <span>Settings</span>
                   </a>
                 </li>
+                
                 <li role="separator" class="divider"></li>
                 <li>
                   <a class="text-color" href="<?php echo base_url("logout"); ?>">
@@ -69,37 +70,47 @@
       </li>
 
       <li>
-        <a href="javascript:void(0)">
-          <i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
-          <span class="menu-text">Settings</span>
-        </a>
-      </li>
-
-      <li class="has-submenu">
-        <a href="javascript:void(0)" class="submenu-toggle">
-          <i class="menu-icon zmdi zmdi-apps zmdi-hc-lg"></i>
-          <span class="menu-text">Galeriler</span>
-          <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
-        </a>
-        <ul class="submenu">
-          <li><a href="#"><span class="menu-text">Resim Galerisi</span></a></li>
-          <li><a href="#"><span class="menu-text">Video Galerisi</span></a></li>
-          <li><a href="#"><span class="menu-text">Dosya Galerisi</span></a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="javascript:void(0)" >
-          <i class="menu-icon zmdi zmdi-layers zmdi-hc-lg"></i>
-          <span class="menu-text">Slider</span>
-        </a>
-      </li>
-      <li>
         <a href="<?php echo base_url("tours"); ?>">
           <i class="menu-icon fa fa-suitcase"></i>
           <span class="menu-text">Turlar</span>
         </a>
       </li>
+
+      <li>
+        <a href="javascript:void(0)">
+          <i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
+          <span class="menu-text">Settings</span>
+        </a>
+      </li>
+      
+
+      <li>
+        <a href="<?php echo base_url("socialMedia"); ?> ">
+          <i class="menu-icon zmdi zmdi-accounts-alt zmdi-hc-lg"></i>
+          <span class="menu-text">Sosyal Medya</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="<?php echo base_url("bank"); ?>">
+          <i class="menu-icon fa fa-bank"></i>
+          <span class="menu-text">Bankalar</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="<?php echo base_url("users"); ?>" >
+         <i class="menu-icon fa fa-user-secret"></i>
+         <span class="menu-text">Kullanıcılar</span>
+       </a>
+     </li>
+
+
+
+
+
       <li>
         <a href="<?php echo base_url("product"); ?>">
           <i class="menu-icon fa fa-cubes"></i>
@@ -112,48 +123,10 @@
           <span class="menu-text">Haberler</span>
         </a>
       </li>
-      <li>
-        <a href="javascript:void(0)" >
-          <i class="menu-icon fa fa-graduation-cap"></i>
-          <span class="menu-text">Eğitimler</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)" >
-         <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
-         <span class="menu-text">Referanslar</span>
-       </a>
-     </li>
-
-     <li>
-      <a href="javascript:void(0)" >
-        <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
-        <span class="menu-text">Markalar</span>
-      </a>
-    </li>
-    <li>
-      <a href="<?php echo base_url("users"); ?>" >
-       <i class="menu-icon fa fa-user-secret"></i>
-       <span class="menu-text">Kullanıcılar</span>
-     </a>
-   </li>
-   <li>
-    <a href="javascript:void(0)" >
-     <i class="menu-icon fa fa-users"></i>
-     <span class="menu-text">Aboneler</span>
-   </a>
- </li>
-
- <li>
-  <a href="javascript:void(0)" >
-   <i class="menu-icon zmdi zmdi-lamp zmdi-hc-lg"></i>
-   <span class="menu-text">Popup Hizmeti</span>
- </a>
-</li>
 
 
 
-</ul><!-- .app-menu -->
-</div><!-- .menubar-scroll-inner -->
+   </ul><!-- .app-menu -->
+ </div><!-- .menubar-scroll-inner -->
 </div><!-- .menubar-scroll -->
 </aside>

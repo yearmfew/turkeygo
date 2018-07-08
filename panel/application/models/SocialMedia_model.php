@@ -1,9 +1,9 @@
 <?php
 
-class user_model extends CI_Model
+class socialMedia_model extends CI_Model
 {
 
-    public $tableName = "users";
+    public $tableName = "socialMedia";
 
     public function __construct()
     {

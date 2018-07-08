@@ -38,3 +38,11 @@ tr td{
 .video_url_container{
     display:none;
 }
+
+.manual_container{
+    display:none;
+}
+
+.overwrite_container{
+    display:none;
+}

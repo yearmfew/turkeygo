@@ -26,5 +26,4 @@ if($(this).val() === "image"){
 
 
 
-
 })

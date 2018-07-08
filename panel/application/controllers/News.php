@@ -38,7 +38,7 @@ class News extends CI_Controller {
 	{
 
 		$viewData = new stdClass();
-	// view e gönderilecek değişkenlerin belirlenmesi
+		// view e gönderilecek değişkenlerin belirlenmesi
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "add";
 
@@ -215,7 +215,7 @@ class News extends CI_Controller {
 
 	}
 
-    public function update($id){
+  public function update($id){
 
         $this->load->library("form_validation");
 

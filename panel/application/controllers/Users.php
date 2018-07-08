@@ -11,7 +11,7 @@ class Users extends CI_Controller
 
         $this->viewFolder = "users_v";
 
-        $this->load->model("user_model");
+        $this->load->model("users_model");
 
         if (!get_active_user()) {
             redirect(base_url("login"));
@@ -24,7 +24,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $items = $this->user_model->get_all(
+        $items = $this->users_model->get_all(
             array() 
         );
 
@@ -78,15 +78,14 @@ class Users extends CI_Controller
 
             // Upload Süreci...
 
-
-            $insert = $this->user_model->add(
+            $insert = $this->users_model->add(
                 array(
                     "user_name"     => $this->input->post("user_name"),
                     "full_name"     => $this->input->post("full_name"),
                     "email"         => $this->input->post("email"),
                     "password"      => md5($this->input->post("password")),                  
                     "isActive"      => 1,
-                    "createdAt"     => date("Y-m-d H:i:s")
+                    "createdAt"     => date("Y-m-d H:i:s"),
                 )
             );
 
@@ -135,7 +134,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->user_model->get(
+        $item = $this->users_model->get(
             array(
                 "id"    => $id,
             )
@@ -157,7 +156,7 @@ class Users extends CI_Controller
         $viewData = new stdClass();
 
         /** Tablodan Verilerin Getirilmesi.. */
-        $item = $this->user_model->get(
+        $item = $this->users_model->get(
             array(
                 "id"    => $id,
             )
@@ -179,7 +178,7 @@ class Users extends CI_Controller
 
         $this->load->library("form_validation");
 
-        $oldUser = $this->user_model->get(array(
+        $oldUser = $this->users_model->get(array(
             "id" =>$id
         ));
 
@@ -213,7 +212,7 @@ class Users extends CI_Controller
 
 
 
-            $insert = $this->user_model->update(array("id" => $id),
+            $insert = $this->users_model->update(array("id" => $id),
                 array(
                     "user_name"     => $this->input->post("user_name"),
                     "full_name"     => $this->input->post("full_name"),
@@ -255,7 +254,7 @@ class Users extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
-            $viewData->item = $this->user_model->get(
+            $viewData->item = $this->users_model->get(
                 array(
                     "id"    => $id,
                 )
@@ -284,7 +283,7 @@ class Users extends CI_Controller
         $validate = $this->form_validation->run();
 
         if($validate){
-            $insert = $this->user_model->update(array("id" => $id),
+            $insert = $this->users_model->update(array("id" => $id),
                 array(
                     "password"     => md5($this->input->post("password")),                  
                 )
@@ -314,7 +313,7 @@ class Users extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "password";
             $viewData->form_error = true;
-            $viewData->item = $this->user_model->get(
+            $viewData->item = $this->users_model->get(
                 array(
                     "id"    => $id,
                 )
@@ -327,7 +326,7 @@ class Users extends CI_Controller
 
     public function delete($id){
 
-        $delete = $this->user_model->delete(
+        $delete = $this->users_model->delete(
             array(
                 "id"    => $id
             )
@@ -365,7 +364,7 @@ class Users extends CI_Controller
 
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
-            $this->user_model->update(
+            $this->users_model->update(
                 array(
                     "id"    => $id
                 ),
@@ -387,7 +386,7 @@ class Users extends CI_Controller
 
         foreach ($items as $rank => $id){
 
-            $this->user_model->update(
+            $this->users_model->update(
                 array(
                     "id"        => $id,
                     "rank !="   => $rank

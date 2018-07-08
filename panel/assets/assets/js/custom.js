@@ -13,10 +13,10 @@ $(document).ready(function () {
 
 
     	var $data_url = $(this).data("url");
-	/*burada kullanılan data fonksiyonu a href içinde de kullanılıyor. bu fonksiyon href içindeki data- den sonra 
-	hangi değişkeni verdi isek gidip onun içindeki dveriyi alıyor.*/
+		/*burada kullanılan data fonksiyonu a href içinde de kullanılıyor. bu fonksiyon href içindeki data- den sonra 
+		hangi değişkeni verdi isek gidip onun içindeki dveriyi alıyor.*/
 
-	swal({
+		swal({
 		title: 'Emin misiniz?',
 		text: "Bu işlemi geri alamayacaksınız!",
 		type: 'warning',
@@ -25,7 +25,7 @@ $(document).ready(function () {
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'Evet, Sil!',
 		cancelButtonText : "Hayır"
-	}).then(function (result) {
+		}).then(function (result) {
         	// evete tıklanmış ise aşağıdaki kodları çalıştır. yani data_url ye git.
         	if (result.value) {
 
@@ -33,10 +33,10 @@ $(document).ready(function () {
         	}
         });
 })
-	/*
-	burada gönderme işlemini bu metod yapıyor. data_url değişkeninde ki linke aldığımız
-	data yani checked değerini yoluyoruz
-	ve sayfayı yenilemeden o metodu çalıştırmış oluyoruz.*/
+		/*
+		burada gönderme işlemini bu metod yapıyor. data_url değişkeninde ki linke aldığımız
+		data yani checked değerini yoluyoruz
+		ve sayfayı yenilemeden o metodu çalıştırmış oluyoruz.*/
 
 	$(".content-container, .image_list_container").on('change', '.isActive', function(){
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
 	// sortable ile değişiklik yaptığımızda değişikliği algılayan fonksiyon
 
- $(".content-container, .image_list_container").on("sortupdate", '.sortable',  function(event, ui){
+	$(".content-container, .image_list_container").on("sortupdate", '.sortable',  function(event, ui){
 
 		var $data = $(this).sortable("serialize");
 		var $data_url = $(this).data("url");

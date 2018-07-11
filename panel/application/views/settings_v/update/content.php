@@ -39,12 +39,12 @@
 
                     </div><!-- .tab-content  -->
                 </div><!-- .nav-tabs-horizontal -->
-            </div><!-- .widget -->
+<!--             </div>
 
             <div class="widget">
-                <div class="widget-body">
-                    <button type="submit" class="btn btn-primary btn-md">Güncelle</button>
-                    <a href="<?php echo base_url("settings"); ?>" class="btn btn-md btn-danger">İptal</a>
+ -->                <div class="widget-body">
+                    <button type="submit" class="btn btn-primary btn-xs">Güncelle</button>
+                    <a href="<?php echo base_url("settings"); ?>" class="btn btn-xs btn-danger">İptal</a>
                 </div>
             </div>
 

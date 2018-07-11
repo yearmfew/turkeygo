@@ -107,25 +107,6 @@
        </a>
      </li>
 
-
-
-
-
-      <li>
-        <a href="<?php echo base_url("product"); ?>">
-          <i class="menu-icon fa fa-cubes"></i>
-          <span class="menu-text">Ürünler</span>
-        </a>
-      </li>
-      <li>
-        <a href="<?php echo base_url("news"); ?>" >
-          <i class="menu-icon fa fa-newspaper-o"></i>
-          <span class="menu-text">Haberler</span>
-        </a>
-      </li>
-
-
-
    </ul><!-- .app-menu -->
  </div><!-- .menubar-scroll-inner -->
 </div><!-- .menubar-scroll -->

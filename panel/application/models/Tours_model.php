@@ -18,10 +18,15 @@ public function __construct()
 
     /** ( istediğim sütunda )Tüm Kayıtları bana getirecek olan metot.. */
     public function get_all($where = array(), $order = "id ASC"){
-
         return $this->db->where($where)->order_by($order)->get($this->tableName)->result();
-
     }
+
+
+/*public function get_all_distincted($where = array(), $order = "id ASC"){
+    $this->db->distinct($this->table_name);
+        return $this->db->where($where)->order_by($order)->get($this->tableName)->result();
+    }*/
+
 
  public function add($data = array()){
 

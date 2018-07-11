@@ -47,6 +47,25 @@ if($(this).val() === "auto"){
 
 
 
+$(".tour_type").change(function(){
+
+
+
+if($(this).val() === "new"){
+	$(".newtype").fadeIn();
+
+}else if($(this).val() === "select"){
+
+
+	$(".newtype").hide();
+	
+} 
+
+})
+
+
+
+
 
 
 

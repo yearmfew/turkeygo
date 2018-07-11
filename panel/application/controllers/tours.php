@@ -25,11 +25,14 @@ class tours extends CI_Controller {
 		$items = $this->tours_model->get_all(
 			array(), "rank ASC");
 
+
+
 		// view e gönderilecek değişkenlerin belirlenmesi
 
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "list";
 		$viewData ->items 			= $items;
+
 		
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
@@ -44,6 +47,13 @@ class tours extends CI_Controller {
 		$viewData ->items =$item 	= $this->tours_model->get_all(
 			array(), "tour_type ASC"
 		);
+
+/*	$tour_types= $this->tours_model->get_all_distincted(
+			array(), "tour_type ASC"
+		); 
+		$viewData ->tour_types 		= $tour_types;*/
+
+
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
 
@@ -102,179 +112,197 @@ class tours extends CI_Controller {
 			break;
 		}
 
+
+			/*	$tour_type = $this->input->post("tour_type");
+
+		if($tour_type = "yeni ekle"){
+		$type=$this->input->post("tour_type_written");
+		}
+		else{ print_r($tour_type); die();
+			$type=$tour_type;			}*/
+
         // Form Validation Calistirilir..
-		$validate = $this->form_validation->run();
-		if ($validate) {			
+			$validate = $this->form_validation->run();
+			if ($validate) {			
+				switch ($detail_type) {
+					case 'auto':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => "auto", 
+						"detail_type"	=>$this->input->post("detail_type"),                  
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
+					);
+
+					break;
+					case 'manual':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => $this->input->post("manual_tour_details"),                  
+						"detail_type"	=>$this->input->post("detail_type"),                  
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
+					);
+					break;
+					case 'overwrite':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => $this->input->post("overwrite_tour_details"),                  
+						"detail_type"	=>$this->input->post("detail_type"),                  
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
+					);
+					break;
+					default:
+					break;
+				}
+
+
+
+
+
+				$insert = $this->tours_model->add($data);
+
+
+				if ($insert) {
+					$alert = array(
+						"title" => "Tebrikler",
+						"text" => "Tur eklendi",
+						"type" => "success"
+					);
+
+
+
+				} 
+				else{
+
+					$alert = array(
+						"title" => "Tebrikler",
+						"text" => "Tur eklendi",
+						"type" => "success"
+					);
+
+
+				}
+				$this->session->set_flashdata("alert", $alert);
+				redirect(base_url("tours"));
+
+				die();
+
+
+			} else{ 
+
+				$viewData = new stdClass();
+
+				/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+				$viewData->viewFolder = $this->viewFolder;
+				$viewData->subViewFolder = "add";
+				$viewData->form_error = true;
+				$viewData->detail_type = $detail_type;
+				$viewData ->items =$item 	= $this->tours_model->get_all(
+					array(), "tour_type ASC"
+				);
+
+
+
+				$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+
+			}
+
+		} 
+		public function update_form($id){
+
+			$viewData = new stdClass();
+
+			/** Tablodan Verilerin Getirilmesi.. */
+			$item = $this->tours_model->get(
+				array(
+					"id"    => $id,
+				)
+			);
+
+			/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+			$viewData->viewFolder = $this->viewFolder;
+			$viewData->subViewFolder = "update";
+			$viewData->item = $item;
+
+			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+		}
+
+
+		public function update($id){ 
+			$this->load->library("form_validation");
+
+        // Kurallar yazilir..
+
+			$detail_type = $this->input->post("detail_type");
+
 			switch ($detail_type) {
 				case 'auto':
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => "auto",                   
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s"),
+				$this->form_validation->set_rules("title", "Başlık", "required|trim");
+				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+				$this->form_validation->set_rules("inbrief", "In Brief", "required");
+				$this->form_validation->set_rules("itinerary", "Itinerary", "required");
+
+
+				$this->form_validation->set_message(
+					array(
+						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+					)
 				);
 
 				break;
 				case 'manual':
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => $this->input->post("manual_tour_details"),                  
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s"),
+				$this->form_validation->set_rules("title", "Başlık", "required|trim");
+				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+				$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
+				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
+				$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
+
+
+				$this->form_validation->set_message(
+					array(
+						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+					)
 				);
 				break;
 				case 'overwrite':
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => $this->input->post("overwrite_tour_details"),                  
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s"),
+				$this->form_validation->set_rules("title", "Başlık", "required|trim");
+				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+				$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
+				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
+				$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+
+				$this->form_validation->set_message(
+					array(
+						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+					)
 				);
 				break;
 				default:
 				break;
 			}
 
-			$insert = $this->tours_model->add($data);
-			if ($insert) {
-				$alert = array(
-					"title" => "Tebrikler",
-					"text" => "Tur eklendi",
-					"type" => "success"
-				);
-
-
-
-			} 
-			else{
-
-				$alert = array(
-					"title" => "Tebrikler",
-					"text" => "Tur eklendi",
-					"type" => "success"
-				);
-
-
-			}
-			$this->session->set_flashdata("alert", $alert);
-			redirect(base_url("tours"));
-
-			die();
-
-
-		} else{ 
-			
-			$viewData = new stdClass();
-
-			/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-			$viewData->viewFolder = $this->viewFolder;
-			$viewData->subViewFolder = "add";
-			$viewData->form_error = true;
-			$viewData->detail_type = $detail_type;
-			$viewData ->items =$item 	= $this->tours_model->get_all(
-				array(), "tour_type ASC"
-			);
-
-
-
-			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-			
-
-		}
-
-	} 
-	public function update_form($id){
-
-		$viewData = new stdClass();
-
-		/** Tablodan Verilerin Getirilmesi.. */
-		$item = $this->tours_model->get(
-			array(
-				"id"    => $id,
-			)
-		);
-
-		/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-		$viewData->viewFolder = $this->viewFolder;
-		$viewData->subViewFolder = "update";
-		$viewData->item = $item;
-
-		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-	}
-
-
-	public function update($id){ 
-		$this->load->library("form_validation");
-
-        // Kurallar yazilir..
-
-		$detail_type = $this->input->post("detail_type");
-
-		switch ($detail_type) {
-			case 'auto':
-			$this->form_validation->set_rules("title", "Başlık", "required|trim");
-			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-			$this->form_validation->set_rules("inbrief", "In Brief", "required");
-			$this->form_validation->set_rules("itinerary", "Itinerary", "required");
-
-
-			$this->form_validation->set_message(
-				array(
-					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-				)
-			);
-
-			break;
-			case 'manual':
-			$this->form_validation->set_rules("title", "Başlık", "required|trim");
-			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
-			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
-			$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
-
-
-			$this->form_validation->set_message(
-				array(
-					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-				)
-			);
-			break;
-			case 'overwrite':
-			$this->form_validation->set_rules("title", "Başlık", "required|trim");
-			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
-			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
-			$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
-
-			$this->form_validation->set_message(
-				array(
-					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-				)
-			);
-			break;
-			default:
-			break;
-		}
-
         // Form Validation Calistirilir..
-		$validate = $this->form_validation->run();
-		if ($validate) {			
-			switch ($detail_type) { 
+			$validate = $this->form_validation->run();
+			if ($validate) {			
+				switch ($detail_type) { 
 
 				case 'auto': //echo $this->input->post("inbrief"); die();
 				$data = array(

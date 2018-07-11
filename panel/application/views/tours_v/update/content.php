@@ -64,9 +64,9 @@
                     <label for="control-demo-6" class="">Tur Ayrıntılarını Nasıl Girmek İstersiniz?</label>
                     <div id="control-demo-6" class="">
                         <select class="form-control detail_type_select" name="detail_type">
-                            <option <?php echo (isset($detail_type) && $detail_type == "auto") ? "selected" : ""; ?> value="auto">Otomatik oluştur</option>
-                            <option <?php echo (isset($detail_type) && $detail_type == "manual") ? "selected" : ""; ?> value="manual">Kendim gireceğim</option>
-                            <option <?php echo (isset($detail_type) && $detail_type == "overwrite") ? "selected" : ""; ?> value="overwrite">Ekstra bilgi gireceğim</option>
+                            <option <?php echo (isset($item->detail_type) && $item->detail_type == "auto") ? "selected" : ""; ?> value="auto">Otomatik oluştur</option>
+                            <option <?php echo (isset($item->detail_type) && $item->detail_type == "manual") ? "selected" : ""; ?> value="manual">Kendim gireceğim</option>
+                            <option <?php echo (isset($item->detail_type) && $item->detail_type == "overwrite") ? "selected" : ""; ?> value="overwrite">Ekstra bilgi gireceğim</option>
 
                         </select>
                     </div>
@@ -74,7 +74,7 @@
 
                 <?php if(isset($form_error)){ ?>
 
-                    <div class="form-group auto_container" style="display: <?php echo ($detail_type == "auto") ? "block" : "none"; ?>">
+                    <div class="form-group auto_container" style="display: <?php echo ($item->detail_type == "auto") ? "block" : "none"; ?>">
 
                      <?php if(isset($form_error)){ ?>
                         <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
@@ -83,7 +83,7 @@
                         <?php echo $item->all_details; ?></textarea>
                     </div>
 
-                    <div class="form-group manual_container" style="display: <?php echo ($detail_type == "manual") ? "block" : "none"; ?>" >    
+                    <div class="form-group manual_container" style="display: <?php echo ($item->detail_type == "manual") ? "block" : "none"; ?>" >    
                         <label>Tur Ayrıntıları</label>
                         <?php if(isset($form_error)){ ?>
                             <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
@@ -93,7 +93,7 @@
 
                         </div>
 
-                        <div class="form-group overwrite_container" style="display: <?php echo ($detail_type == "overwrite") ? "block" : "none"; ?>">   
+                        <div class="form-group overwrite_container" style="display: <?php echo ($item->detail_type == "overwrite") ? "block" : "none"; ?>">   
                           <label>Tur Ayrıntıları</label>
                           <?php if(isset($form_error)){ ?>
                             <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>

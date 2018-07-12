@@ -60,6 +60,66 @@
                     >  </textarea>
 
                 </div>
+      <div class="form-group">
+                        <label>Date</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("date"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Tur tarihini giriniz" name="date">
+
+                    </div>   
+                       <div class="form-group">
+                        <label>Country</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("country"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Turun yapılaağı ülkeyi giriniz" name="country">
+
+                    </div>
+
+      <div class="form-group">
+                        <label>City</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("city"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Gidilecek şehri giriniz" name="city">
+
+                    </div>
+                          <div class="form-group">
+                        <label>Duration</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("duration"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Tur süresini giriniz" name="duration">
+
+                    </div>
+                          <div class="form-group">
+                        <label>Start And End</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("startEnd"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Start End bilgisi giriniz" name="startEnd">
+
+                    </div>
+                          <div class="form-group">
+                        <label>Hotels</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("hotels"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Otel bilgilerini giriniz" name="hotels">
+
+                    </div>
+                          <div class="form-group">
+                        <label>Meals</label>
+                        <?php if(isset($form_error)){ ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("meals"); ?></small>
+                        <?php } ?>
+                        <input class="form-control" placeholder="Yiyecek içecek bilgilerini giriniz" name="meals">
+
+                    </div>
+
+
+
                 <div class="form-group">
                     <label>Itinerary</label>
                     <?php if(isset($form_error)){ ?>

@@ -263,6 +263,21 @@
 						</a>
 					</div>
 					<!-- /portfolio Item -->
+						<!-- portfolio Item -->		
+					<div class="gp-item tj-hover-1 deneme">
+						<a href="portfolio-item.html" class="ajax-portfolio normal">
+							<img src="assets/img/portfolio/grid/14.jpg" alt="alt" class="img-responsive">
+							<!-- Item Overlay -->	
+							<div class="tj-overlay">
+								<div class="overlay-texts">
+									<h3 class="title">Project title</h3>
+									<h4 class="subtitle">Photography, print</h4>
+								</div>
+							</div>
+							<!-- /Item Overlay -->	
+						</a>
+					</div>
+					<!-- /portfolio Item -->
 					
 
 

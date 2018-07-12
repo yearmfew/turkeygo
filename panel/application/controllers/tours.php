@@ -71,7 +71,16 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("title", "Başlık", "required|trim");
 			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
 			$this->form_validation->set_rules("inbrief", "In Brief", "required");
-			$this->form_validation->set_rules("itinerary", "Itinerary", "required");
+			$this->form_validation->set_rules("itinerary", "Itinerary", "required");			
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
+
+
 
 
 			$this->form_validation->set_message(
@@ -87,6 +96,13 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
 			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 			$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
 
 
 			$this->form_validation->set_message(
@@ -101,6 +117,13 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
 			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 			$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
 
 			$this->form_validation->set_message(
 				array(
@@ -133,7 +156,14 @@ class tours extends CI_Controller {
 						"inbrief"     	=> $this->input->post("inbrief"),
 						"itinerary"     => $this->input->post("itinerary"),
 						"all_details"   => "auto", 
-						"detail_type"	=>$this->input->post("detail_type"),                  
+						"detail_type"	=>$this->input->post("detail_type"),  
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
@@ -148,7 +178,14 @@ class tours extends CI_Controller {
 						"inbrief"     	=> $this->input->post("inbrief"),
 						"itinerary"     => $this->input->post("itinerary"),
 						"all_details"   => $this->input->post("manual_tour_details"),                  
-						"detail_type"	=>$this->input->post("detail_type"),                  
+						"detail_type"	=>$this->input->post("detail_type"),   
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),               
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
@@ -162,19 +199,23 @@ class tours extends CI_Controller {
 						"inbrief"     	=> $this->input->post("inbrief"),
 						"itinerary"     => $this->input->post("itinerary"),
 						"all_details"   => $this->input->post("overwrite_tour_details"),                  
-						"detail_type"	=>$this->input->post("detail_type"),                  
+						"detail_type"	=>$this->input->post("detail_type"),  
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
+
 					);
 					break;
 					default:
 					break;
 				}
-
-
-
-
 
 				$insert = $this->tours_model->add($data);
 
@@ -219,7 +260,6 @@ class tours extends CI_Controller {
 				);
 
 
-
 				$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 
 
@@ -254,99 +294,147 @@ class tours extends CI_Controller {
 			$detail_type = $this->input->post("detail_type");
 
 			switch ($detail_type) {
-				case 'auto':
-				$this->form_validation->set_rules("title", "Başlık", "required|trim");
-				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-				$this->form_validation->set_rules("inbrief", "In Brief", "required");
-				$this->form_validation->set_rules("itinerary", "Itinerary", "required");
+			case 'auto':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("inbrief", "In Brief", "required");
+			$this->form_validation->set_rules("itinerary", "Itinerary", "required");			
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
 
 
-				$this->form_validation->set_message(
-					array(
-						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-					)
-				);
-
-				break;
-				case 'manual':
-				$this->form_validation->set_rules("title", "Başlık", "required|trim");
-				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-				$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
-				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
-				$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
 
 
-				$this->form_validation->set_message(
-					array(
-						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-					)
-				);
-				break;
-				case 'overwrite':
-				$this->form_validation->set_rules("title", "Başlık", "required|trim");
-				$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
-				$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
-				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
-				$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
 
-				$this->form_validation->set_message(
-					array(
-						"required"  => "<b>{field}</b> alanı doldurulmalıdır"
-					)
-				);
-				break;
-				default:
-				break;
-			}
+			break;
+			case 'manual':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
+			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
+			$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
+
+
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
+			break;
+			case 'overwrite':
+			$this->form_validation->set_rules("title", "Başlık", "required|trim");
+			$this->form_validation->set_rules("tour_type", "Tur Tipi", "required|trim");
+			$this->form_validation->set_rules("inbrief", "In Brief", "required|trim");
+			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
+			$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
+			$this->form_validation->set_rules("date", "Date", "required|trim");
+			$this->form_validation->set_rules("country", "Country", "required|trim");
+			$this->form_validation->set_rules("city", "City", "required|trim");
+			$this->form_validation->set_rules("duration", "Duration", "required|trim");
+			$this->form_validation->set_rules("startEnd", "Start and End", "required|trim");
+			$this->form_validation->set_rules("hotels", "Hotels", "required|trim");
+			$this->form_validation->set_rules("meals", "Meals", "required|trim");
+
+			$this->form_validation->set_message(
+				array(
+					"required"  => "<b>{field}</b> alanı doldurulmalıdır"
+				)
+			);
+			break;
+			default:
+			break;
+		}
 
         // Form Validation Calistirilir..
 			$validate = $this->form_validation->run();
 			if ($validate) {			
-				switch ($detail_type) { 
+			switch ($detail_type) {
+					case 'auto':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => "auto", 
+						"detail_type"	=>$this->input->post("detail_type"),  
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),                
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
+					);
 
-				case 'auto': //echo $this->input->post("inbrief"); die();
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => $this->input->post("auto"),                  
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s")
-				);
+					break;
+					case 'manual':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => $this->input->post("manual_tour_details"),                  
+						"detail_type"	=>$this->input->post("detail_type"),   
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),               
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
+					);
+					break;
+					case 'overwrite':
+					$data = array(
+						"title"     	=> $this->input->post("title"),
+						"url"           => convertToSEO($this->input->post("title")),
+						"tour_type"		=> $this->input->post("tour_type"),
+						"inbrief"     	=> $this->input->post("inbrief"),
+						"itinerary"     => $this->input->post("itinerary"),
+						"all_details"   => $this->input->post("overwrite_tour_details"),                  
+						"detail_type"	=>$this->input->post("detail_type"),  
+						"date"		=> $this->input->post("date"),
+						"country"		=> $this->input->post("country"),
+						"city"		=> $this->input->post("city"),
+						"duration"		=> $this->input->post("duration"),
+						"startEnd"		=> $this->input->post("startEnd"),
+						"hotels"		=> $this->input->post("hotels"),
+						"meals"		=> $this->input->post("meals"),                
+						"rank"      	=> 0,
+						"isActive"      => 1,
+						"createdAt"     => date("Y-m-d H:i:s"),
 
-				break;
-				case 'manual': 
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => $this->input->post("manual_tour_details"),                  
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s")
-				);
-				break;
-				case 'overwrite':
-				$data = array(
-					"title"     	=> $this->input->post("title"),
-					"url"           => convertToSEO($this->input->post("title")),
-					"tour_type"		=> $this->input->post("tour_type"),
-					"inbrief"     	=> $this->input->post("inbrief"),
-					"itinerary"     => $this->input->post("itinerary"),
-					"all_details"   => $this->input->post("overwrite_tour_details"),                  
-					"rank"      	=> 0,
-					"isActive"      => 1,
-					"createdAt"     => date("Y-m-d H:i:s")
-				);
-				break;
-				default:
-				break;
-			}
+					);
+					break;
+					default:
+					break;
+				}
+
 
 			
 			$update = $this->tours_model->update(array("id" => $id), $data);
@@ -380,17 +468,20 @@ class tours extends CI_Controller {
 		} else{ 
 			
 			$viewData = new stdClass();
+			/** Tablodan Verilerin Getirilmesi.. */
+			$item = $this->tours_model->get(
+				array(
+					"id"    => $id,
+				)
+			);
 
 			/** View'e gönderilecek Değişkenlerin Set Edilmesi.. */ 
 			$viewData->viewFolder = $this->viewFolder;
 			$viewData->subViewFolder = "update";
 			$viewData->form_error = true;
 			$viewData->detail_type = $detail_type;
-			$viewData ->items =$item 	= $this->tours_model->get_all(
-				array(), "tour_type ASC"
-			);
-
-
+			$viewData ->item 	= $item;
+	
 
 			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 			
@@ -400,7 +491,6 @@ class tours extends CI_Controller {
 	} 
 
 	public function delete($id){
-
 		$item_images = $this->tour_image_model->get_all(
 			array(
 				"tour_id" => $id
@@ -446,8 +536,7 @@ class tours extends CI_Controller {
 
 		}
 
-		public function isActiveSetter($id)
-		{
+		public function isActiveSetter($id){
 			if($id){
 				$isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -509,7 +598,7 @@ class tours extends CI_Controller {
 
 			$viewData = new stdClass();
 
-		// tablodan verilerin getirilmesi
+			// tablodan verilerin getirilmesi
 			$item = $this->tours_model->get(
 				array(
 					"id"    => $id,
@@ -671,6 +760,8 @@ class tours extends CI_Controller {
 
 			}
 		}
+
+
 
 
 

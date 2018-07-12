@@ -7,6 +7,8 @@
 						  <li><a href="#" data-filter=".photography">Photography</a></li>
 						  <li><a href="#" data-filter=".video">Video</a></li>
 						  <li><a href="#" data-filter=".print">Print</a></li>
+						  <li><a href="#" data-filter=".deneme">Deneme</a></li>
+
 						</ul>
 					</div>
 					<!-- /Grid filter -->

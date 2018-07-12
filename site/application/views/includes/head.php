@@ -8,5 +8,5 @@
 		<!--/Google font-->
 
         <!-- CSS styles -->
-        <link rel="stylesheet" href="assets/css/base.css">
+        <link rel="stylesheet" href="<?php echo base_url("assets"); ?>/css/base.css">
       	<!-- /CSS styles -->

@@ -49,7 +49,7 @@
 										</h2>
 									</div>
 									<div class="col-md-2">
-										<a class="btn btn-toranj" href="#">Tours</a>
+										<a class="btn btn-toranj" href="<?php echo base_url("home/tours"); ?>">Tours</a>
 									</div>
 								</div>
 							</div>

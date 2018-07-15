@@ -39,7 +39,7 @@
 							<!-- /Post sidebar -->
 
 							<!-- Post main area -->
-							<div class="col-md-10">
+							<div id="renderMe" class="col-md-10">
 
 								<!-- Post Content -->
 								<div id="post-content">

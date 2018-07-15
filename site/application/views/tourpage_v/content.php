@@ -72,11 +72,11 @@
 			<!-- main contents -->
 			<div class="page-main">
 				<div class="inner-wrapper sync-width-parent">
-
+<?php $image = get_cover_image($tour->id);  ?>
 
 					<!-- parallax header -->
 					<div class="parallax-head set-bg sync-width">
-						<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/cover.jpg" class="img-responsive" alt="image" >
+						<img src="http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image; ?>" class="img-responsive" alt="image" >
 					</div>
 
 					<!-- the contents of the page -->
@@ -152,48 +152,13 @@
 								<img src="" class="img-responsive inview-animate inview-scale" alt="">
 							</div>
 						</div>
-
-
-
-
-
-
 						<div class="custom-grid-row">
 
-							<?php $num=0;  foreach ($images as $image){$num++; ?>
-								
-
-
-
+							<?php $num=0;  foreach ($images as $image){ ?>
 								<div class="col-1-2">
 									<img src="http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image->img_url; ?>" class="img-responsive inview-animate inview-scale" alt="">
 								</div>
-
-							<?php if($num==2){break;} } ?>
-
-							<div class="col-1-2">
-								<img src="http://localhost/panel/uploads/tours_v/<?php  ?>" class="img-responsive inview-animate inview-scale" alt="">
-							</div>
-							<div class="col-1-2">
-								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/02.jpg" class="img-responsive inview-animate inview-scale" alt="">
-							</div>
-						</div>
-
-						<div class="custom-grid-row">
-							<div class="col-1-2">
-								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/03.jpg" class="img-responsive inview-animate inview-scale" alt="">
-							</div>
-							<div class="col-1-2">
-								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/04.jpg" class="img-responsive inview-animate inview-scale" alt="">
-							</div>
-						</div>
-
-						<div class="custom-grid-row">
-							<div class="col-1-1">
-								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/08.jpg" class="img-responsive inview-animate inview-scale" alt="">
-							</div>
-						</div>
-
+							<?php  } ?>
 					</div>
 
 

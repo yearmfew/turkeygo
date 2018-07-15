@@ -1,7 +1,7 @@
 	<!-- Page main wrapper -->
 	<div id="main-content">
-		<div id="print" class="page-wrapper">
-			<div id="blog-single">
+		<div  class="page-wrapper">
+			<div id=" blog-single">
 
 				<!-- Post header -->
 				<div id="post-header" class="parallax-parent">
@@ -39,7 +39,7 @@
 							<!-- /Post sidebar -->
 
 							<!-- Post main area -->
-							<div class="col-md-10">
+							<div id="renderMe" class="col-md-10">
 
 								<!-- Post Content -->
 								<div id="post-content">

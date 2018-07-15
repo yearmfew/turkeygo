@@ -9,8 +9,9 @@
 
 
 
-<div class="pull-right"><br>
-	<a href="#" target="_blank"><i class=" btn btn-md fa fa-envelope"> Send</i></a>
-	<a href="javascript:genPDF()" target="_blank"><i class=" btn btn-md fa fa-file-pdf-o"> Print</i></a>
+<div  class="pull-right"><br>
+	<button type="button" class="btn btn-md  btn-default btn-icon"><i class="fa fa-envelope "> Send</i></button>
+	<button type="button" class="btn btn-md  btn-default btn-icon" id="pdfDownloader"><i class="fa fa-file-pdf-o "> Print</i></button>
+
 
 </div>

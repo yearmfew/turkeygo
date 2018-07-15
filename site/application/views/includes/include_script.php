@@ -46,6 +46,13 @@
 		<script src="<?php echo base_url("assets"); ?>/masterslider/jquery.easing.min.js"></script>
 		<script src="<?php echo base_url("assets"); ?>/masterslider/masterslider.min.js"></script>
 		
-		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/jspdf.min.js"></script>
-		<!-- theme custom scripts -->
 		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/custom.js"></script>
+		<!-- theme custom scripts -->
+<!-- 
+
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/html2canvas.js"></script>
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/html2pdf.js"></script>  -->
+
+				<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/jspdf.debug.js"></script>
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/jspdf.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/from_html.js"></script>

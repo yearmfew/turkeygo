@@ -1,6 +1,6 @@
 	<!-- Page main wrapper -->
 	<div id="main-content">
-		<div class="page-wrapper">
+		<div  class="page-wrapper" >
 			<div id="blog-single">
 
 				<!-- Post header -->
@@ -28,7 +28,7 @@
 				</div>
 				<!-- /Post header -->
 
-				<div class="container">
+				<div  class="container">
 
 					<!-- Post body -->
 					<div id="post-body">
@@ -39,7 +39,7 @@
 							<!-- /Post sidebar -->
 
 							<!-- Post main area -->
-							<div class="col-md-10">
+							<div id="renderMe" class="col-md-10">
 
 								<!-- Post Content -->
 								<div id="post-content">

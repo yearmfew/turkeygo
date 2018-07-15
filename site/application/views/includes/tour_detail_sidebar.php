@@ -12,6 +12,7 @@
 
 					<a href="<?php echo base_url("home/itinerary/$tour->id"); ?>">	<i class="fa fa-folder-o list-icon"></i> Itinerary</a><br>
 					<a href="<?php echo base_url("home/all_details/$tour->id"); ?>"><i class="fa fa-folder-o list-icon"></i>All Details</a><br>
+					<a href="<?php echo base_url("home/inclusions/$tour->id"); ?>"><i class="fa fa-folder-o list-icon"></i>Inc. & Excl</a><br>
 					<a href="<?php echo base_url("home/hotels/$tour->id"); ?>"><i class="fa fa-folder-o list-icon"></i>Hotels</a><br><hr>
 
 					
@@ -38,7 +39,7 @@
 										<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
 										<li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li> -->
 										<li><a href="#" target="_blank"><i class="fa fa-envelope"></i></a></li>
-										<li><a href="#" target="_blank"><i class="fa fa-file-pdf-o"></i></a></li>
+										<li><a href="#" id="pdfDownloader"><i class="fa fa-file-pdf-o"></i></a></li>
 									</ul>
 								</div>
 								<!-- /Post Social sharing -->

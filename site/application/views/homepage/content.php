@@ -8,15 +8,15 @@
 				<?php $this->load->view("includes/grid_filter.php"); ?>
 
 
-				<?php foreach ($tours as $tour) { ?>
 
 
 					<!-- portfolio wrapper -->	
 					<div class="grid-portfolio no-padding same-ratio-items">
+				<?php foreach ($tours as $tour) { ?>
 						<!-- portfolio Item -->		
 						<div class="gp-item tj-hover-1 grid-sizer">
-							<a href="<?php echo base_url("home/tour_page") ?> " class="ajax-portfolio normal">
-								<img src="assets/img/portfolio/grid/01.jpg" alt="alt" class="img-responsive">
+							<a href="<?php echo base_url("home/tour_page/$tour->id"); ?> " class="ajax-portfolio normal">
+								<img src=" http://via.placeholder.com/300x300" alt="alt" class="img-responsive">
 								<!-- Item Overlay -->	
 								<div class="tj-overlay">
 									<div class="overlay-texts">
@@ -29,12 +29,16 @@
 						</div>
 						<!-- /portfolio Item -->
 
-									
+										
 
 
+				<?php } ?>	
 				</div>
 				<!-- /portfolio wrapper -->	
-				<?php } ?>	
+
+
+					
+				
 			</div>
 
 			<!--Ajax folio-->

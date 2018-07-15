@@ -14,12 +14,12 @@
 				<div class="grid-portfolio no-padding same-ratio-items">
 					<?php foreach ($tours as $tour) { ?>
 						<!-- portfolio Item -->		
-						<div class="gp-item tj-hover-1 grid-sizer">
+						<div class="gp-item tj-hover-1 <?php echo $tour->tour_type; ?>">
 							<a href="<?php echo base_url("home/tour_page/$tour->id"); ?> " class="ajax-portfolio normal">
 								<?php $image = get_cover_image($tour->id);  ?>
 
 
-								<img style="width:300px; height:300px !important;" src=" http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image; ?>" alt="alt" class="img-responsive">
+								<img  src=" http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image; ?>" alt="alt" class="img-responsive">
 								<!-- Item Overlay -->	
 								<div class="tj-overlay">
 									<div class="overlay-texts">

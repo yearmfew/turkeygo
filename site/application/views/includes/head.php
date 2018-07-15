@@ -11,3 +11,4 @@
         <link rel="stylesheet" href="<?php echo base_url("assets"); ?>/css/base.css">
         <link rel="stylesheet" href="<?php echo base_url("assets"); ?>/css/custom.css">
       	<!-- /CSS styles -->
+        <?php $settings= get_settings(); ?>

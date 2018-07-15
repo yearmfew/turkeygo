@@ -134,6 +134,36 @@
         </textarea>
 
     </div>
+<div class="form-group">
+            <label>Inclusions</label>
+            <?php if(isset($form_error)){ ?>
+                <small class="pull-right input-form-error"> <?php echo form_error("inclusions"); ?></small>
+            <?php } ?>
+            <textarea
+            name="inclusions" 
+            class="m-0" 
+            data-plugin="summernote" 
+            data-options="{height: 100}"
+            >
+        </textarea>
+
+    </div><div class="form-group">
+            <label>Exclusions</label>
+            <?php if(isset($form_error)){ ?>
+                <small class="pull-right input-form-error"> <?php echo form_error("exclusions"); ?></small>
+            <?php } ?>
+            <textarea
+            name="exclusions" 
+            class="m-0" 
+            data-plugin="summernote" 
+            data-options="{height: 100}"
+            >
+        </textarea>
+
+    </div>
+
+
+
     <div class="form-group">
         <label for="control-demo-6" class="">Tur Ayrıntılarını Nasıl Girmek İstersiniz?</label>
         <div id="control-demo-6" class="">
@@ -150,10 +180,10 @@
 
         <div class="form-group auto_container" style="display: <?php echo ($detail_type == "auto") ? "block" : "none"; ?>">
 
-         <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları inbrief ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
-     </div>
+           <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları inbrief ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
+       </div>
 
-     <div class="form-group manual_container" style="display: <?php echo ($detail_type == "manual") ? "block" : "none"; ?>" >    
+       <div class="form-group manual_container" style="display: <?php echo ($detail_type == "manual") ? "block" : "none"; ?>" >    
         <label>Tur Ayrıntıları</label>
         <?php if(isset($form_error)){ ?>
             <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
@@ -185,9 +215,9 @@
 
     </div>
     <div class="form-group overwrite_container">
-       <label>Tur Ayrıntıları</label>
-       <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
-       <?php if(isset($form_error)){ ?>
+     <label>Tur Ayrıntıları</label>
+     <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+     <?php if(isset($form_error)){ ?>
         <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
     <?php } ?>
 </div>

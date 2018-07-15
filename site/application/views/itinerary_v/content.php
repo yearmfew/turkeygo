@@ -34,7 +34,9 @@
 					<div id="post-body">
 						<div class="row">
 
-						<?php $this->load->view("{$viewFolder}/tour_detail_sidebar"); ?>
+						<!-- Post sidebar -->
+								<?php $this->load->view("includes/tour_detail_sidebar"); ?>
+							<!-- /Post sidebar -->
 
 							<!-- Post main area -->
 							<div class="col-md-10">
@@ -42,31 +44,11 @@
 								<!-- Post Content -->
 								<div id="post-content">
 
-									<h1>Inclusions</h1>
 									<p>
-										<?php echo $tour->inclusions; ?>
+										<?php echo $tour->itinerary;  ?>
 									</p>
 									
-									<h2>Exclusions</h2>
-									<p>
-										<?php echo $tour->exclusions;  ?>
-									</p>
-									<blockquote>
-										Happiness is on the road, not the end of the road. - Epiktetos <br>
-										Going on a journey is worth every price and sacrifice. - Elizabeth Gilbert <br>
-										Live, travel, adventure, be thankful and never regret it. - Jack Kerouac <br>
-										It does not matter where your last stop is, how memories and experiences you have! - Penelope Riley
-									</blockquote>	
-								</div>
-								<!-- /Post Content -->
-
-
-
-								<div class="pull-right"><br>
-									<a href="#" target="_blank"><i class=" btn btn-md fa fa-envelope"> Send</i></a>
-									<a href="#" target="_blank"><i class=" btn btn-md fa fa-file-pdf-o"> Print</i></a>
-
-								</div>
+								<?php $this->load->view("includes/blackquote_buttons"); ?>
 
 							</div>
 							<!-- /Post main area -->

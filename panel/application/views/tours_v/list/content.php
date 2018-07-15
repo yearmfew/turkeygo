@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<h4 class="m-b-lg">
 			Turlar
-			<a href="<?php echo base_url("tours/new_form"); ?>" class="btn btn-outline btn-primary btn-xs pull-right text-center"> <i class="fa fa-plus"></i> Yeni Tur Ekle</a>
+			<a href="<?php echo base_url("tours/new_form"); ?>" class="btn btn-outline btn-primary btn-md pull-right text-center"> <i class="fa fa-plus"></i> Yeni Tur Ekle</a>
 		</h4>
 	</div><!-- END column -->
 
@@ -21,8 +21,8 @@
 							<th class="order"><i class="fa fa-reorder"></i></th>
 							<th class="w50">#id</th>
 							<th class="w150">Tur Adı</th>
-							<!-- <th>url</th> -->
-							<th class="w250">Highlights</th>
+							<th class="w100">City</th>
+							<th class="w100">Date</th>
 							<th>Tur Tipi</th>													
 							<th class="w50">Durumu</th>
 							<th>İşlemler</th>
@@ -34,7 +34,8 @@
 									<td><?php echo $item->id; ?> </td>
 									<td ><?php echo $item->title; ?></td>
 									<!-- <td><?php echo $item->url; ?></td> -->
-									<td ><?php echo word_limiter($item->highlights, 5); ?></td>								
+									<td ><?php echo $item->city; ?></td>								
+									<td ><?php echo $item->date; ?></td>								
 									<td ><?php echo $item->tour_type; ?>	</td>
 									<td class="text-center">			
 										<input 
@@ -64,5 +65,7 @@
 			<?php } ?>
 		</div>
 	</div><!-- .widget -->
+	<a href="<?php echo base_url("tours/new_form"); ?>" class="btn btn-outline btn-primary btn-md btn-block text-center"> <i class="fa fa-plus"></i> Yeni Tur Ekle</a> <br>
 </div><!-- END column -->
+
 </div>

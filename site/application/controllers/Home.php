@@ -108,6 +108,64 @@ class Home extends CI_Controller {
 		$this->load->view("$viewData->viewFolder/index", $viewData);
 	}
 
+	public function about()
+	{
+		$viewData = new stdClass();
+		$viewData->viewFolder = "about_v";
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+
+	}
+
+	public function contact()
+	{
+		$viewData = new stdClass();
+		$viewData->viewFolder = "contact_v";
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+
+	}
+
+	public function tours()
+	{
+		$viewData = new stdClass();
+		$viewData->viewFolder = "tours_v";
+		$this->load->model("tours_model");
+
+		$viewData->tours = $this->tours_model->get_all(
+
+			array(
+				"isActive" =>1
+			), "rank ASC"
+
+		);
+
+
+
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+
+	}
+
+
+	function my_mPDF(){
+
+		$viewData = new stdClass();
+		$viewData->viewFolder = "contact_v";
+		$filename = time()."_order.pdf";
+	
+
+		$html = $this->load->view('contact_v/index',$viewData,true);
+
+// unpaid_voucher is unpaid_voucher.php file in view directory and $data variable has infor mation that you want to render on view.
+
+		$this->load->library('M_pdf');
+
+		$this->m_pdf->pdf->WriteHTML($html);
+
+//download it D save F.
+
+		$this->m_pdf->pdf->Output("base_url()".$filename, "F");
+	}
+
+
 }
 
 /* End of file home.php */

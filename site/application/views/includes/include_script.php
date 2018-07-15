@@ -1,3 +1,5 @@
+<?php $settings= get_settings(); ?>
+
 <!-- jquery core -->
 		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/vendors/jquery-1.11.0.min.js"></script>
 
@@ -37,11 +39,13 @@
 		<!-- smooth scroll -->
 		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/vendors/smoothscroll.js"></script>
 
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/custom-b.js"></script>
 		
 
 		<!-- Master Slider -->
 		<script src="<?php echo base_url("assets"); ?>/masterslider/jquery.easing.min.js"></script>
 		<script src="<?php echo base_url("assets"); ?>/masterslider/masterslider.min.js"></script>
 		
+		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/jspdf.min.js"></script>
 		<!-- theme custom scripts -->
 		<script type="text/javascript" src="<?php echo base_url("assets"); ?>/js/custom.js"></script>

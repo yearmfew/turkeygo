@@ -30,17 +30,17 @@
                      </div>
                  </div>
                  <div class="form-group">
-                    <label>In Brief</label>
+                    <label>Highlights</label>
                     <?php if(isset($form_error)){ ?>
-                        <small class="pull-right input-form-error"> <?php echo form_error("inbrief"); ?></small>
+                        <small class="pull-right input-form-error"> <?php echo form_error("highlights"); ?></small>
                     <?php } ?>
                     <textarea
-                    name="inbrief" 
+                    name="highlights" 
                     class="m-0" 
                     data-plugin="summernote" 
                     data-options="{height: 100}"
 
-                    > <?php echo $item->inbrief; ?> </textarea>
+                    > <?php echo $item->highlights; ?> </textarea>
 
 
                     <label>Date</label>
@@ -136,7 +136,7 @@
 
        <div class="form-group auto_container" style="display: <?php echo ($detail_type == "auto") ? "block" : "none"; ?>">
 
-                   <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları inbrief ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
+                   <input type="text" readonly name="auto" class="form-control" placeholder="Tur ayrıntıları highlights ve itinerary bölümlerinin birleşiminden oluşturulacaktır.">
                </div>
 
 

@@ -35,6 +35,12 @@
 								<div class="list-des"><?php echo $tour->duration; ?></div>
 							</li>
 						</ul>	
+
+
+						<a href="<?php echo base_url("home/inclusions/$tour->id"); ?>" class="btn btn-toranj alt btn-icon w250"><i class="fa fa-info-circle "></i> Inclusions & Exclusions</a>
+						<a href="<?php echo base_url("home/itinerary/$tour->id"); ?>" class="btn btn-toranj alt btn-icon w250"><i class="fa fa-calendar "></i> Itinerary</a>
+						<a href="<?php echo base_url("home/all_details/$tour->id"); ?>" class="btn btn-toranj alt btn-icon w250"><i class="fa fa-globe "></i> All Details</a>
+						<a class="btn btn-toranj alt btn-icon w250"><i class="fa fa-eur "></i> Price</a>
 					</div>
 				</div>
 				<!-- portfolio nav -->
@@ -59,6 +65,7 @@
 					</li>
 				</ul>
 				<!--/ portfolio nav -->
+
 			</div>
 			<!-- /Sidebar -->
 
@@ -106,6 +113,9 @@
 								</li>
 							</ul>	
 
+
+<a class="btn btn-toranj alt btn-icon"><i class="fa fa-edit"></i>Icon button</a>
+
 							<!-- portfolio nav -->
 							<ul class="portfolio-nav">
 								<li>
@@ -133,19 +143,36 @@
 
 						<div class="centered-description">
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, <br>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+							<?php echo $tour->highlights; ?>
 							</p>
 						</div>	
 
 						<div class="custom-grid-row">
 							<div class="col-1-1">
-								<img src="<?php echo base_url("uploads/tours_v/"); echo $image->img_url; ?>" class="img-responsive inview-animate inview-scale" alt="">
+								<img src="" class="img-responsive inview-animate inview-scale" alt="">
 							</div>
 						</div>
 
+
+
+
+
+
 						<div class="custom-grid-row">
+
+							<?php $num=0;  foreach ($images as $image){$num++; ?>
+								
+
+
+
+								<div class="col-1-2">
+									<img src="http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image->img_url; ?>" class="img-responsive inview-animate inview-scale" alt="">
+								</div>
+
+							<?php if($num==2){break;} } ?>
+
 							<div class="col-1-2">
-								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/01.jpg" class="img-responsive inview-animate inview-scale" alt="">
+								<img src="http://localhost/panel/uploads/tours_v/<?php  ?>" class="img-responsive inview-animate inview-scale" alt="">
 							</div>
 							<div class="col-1-2">
 								<img src="<?php echo base_url("assets"); ?>/img/portfolio/single1/02.jpg" class="img-responsive inview-animate inview-scale" alt="">

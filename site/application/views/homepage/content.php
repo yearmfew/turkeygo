@@ -10,13 +10,16 @@
 
 
 
-					<!-- portfolio wrapper -->	
-					<div class="grid-portfolio no-padding same-ratio-items">
-				<?php foreach ($tours as $tour) { ?>
+				<!-- portfolio wrapper -->	
+				<div class="grid-portfolio no-padding same-ratio-items">
+					<?php foreach ($tours as $tour) { ?>
 						<!-- portfolio Item -->		
 						<div class="gp-item tj-hover-1 grid-sizer">
 							<a href="<?php echo base_url("home/tour_page/$tour->id"); ?> " class="ajax-portfolio normal">
-								<img src=" http://via.placeholder.com/300x300" alt="alt" class="img-responsive">
+								<?php $image = get_cover_image($tour->id);  ?>
+
+
+								<img style="width:300px; height:300px !important;" src=" http://localhost/turkeygo/panel/uploads/tours_v/<?php echo $image; ?>" alt="alt" class="img-responsive">
 								<!-- Item Overlay -->	
 								<div class="tj-overlay">
 									<div class="overlay-texts">
@@ -29,15 +32,15 @@
 						</div>
 						<!-- /portfolio Item -->
 
-										
+						
 
 
-				<?php } ?>	
+					<?php } ?>	
 				</div>
 				<!-- /portfolio wrapper -->	
 
 
-					
+				
 				
 			</div>
 

@@ -28,17 +28,8 @@ class Home extends CI_Controller {
 
 		);
 
-		$this->load->model("tour_image_model");
 
-		$viewData->coverimage = $this->tour_image_model->get(
-			array(
-				"tour_id" => $id,
-				"isCover" =>1
-			)
 
-		);
-
-//print_r($coverimage); die();
 
 
 		$this->load->view("$viewData->viewFolder/index", $viewData);
@@ -51,28 +42,72 @@ class Home extends CI_Controller {
 	public function tour_page($id)
 	{
 
-
 		$viewData = new stdClass();
 		$viewData->viewFolder = "tourpage_v";
-			$this->load->model("tours_model");
+		$this->load->model("tours_model");
 		$viewData->tour = $this->tours_model->get(
 			array(
 				"id"=> $id,
 			)
 		); 
-			$this->load->model("tour_image_model");
+		$this->load->model("tour_image_model");
 
-		$viewData->image = $this->tour_image_model->get(
+		$viewData->images = $this->tour_image_model->get_all(
 			array(
 				"tour_id" => $id,
 				"isActive" =>1,
-			)
+			), "rank ASC"
 		);
 
- get_cover_image(47); die();
+
 
 		$this->load->view("tourpage_v/index", $viewData);
 	}
+
+
+
+
+	public function inclusions($id){
+		$viewData = new stdClass();
+		$viewData->viewFolder = "inclusions_v";
+		$this->load->model("tours_model");
+		$viewData->tour = $this->tours_model->get(
+			array(
+				"id"=> $id,
+			)
+		); 
+		
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+	}
+
+
+	public function itinerary($id){
+		$viewData = new stdClass();
+		$viewData->viewFolder = "itinerary_v";
+		$this->load->model("tours_model");
+		$viewData->tour = $this->tours_model->get(
+			array(
+				"id"=> $id,
+			)
+		); 
+		
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+	}
+
+
+	public function all_details($id){
+		$viewData = new stdClass();
+		$viewData->viewFolder = "all_details_v";
+		$this->load->model("tours_model");
+		$viewData->tour = $this->tours_model->get(
+			array(
+				"id"=> $id,
+			)
+		); 
+		
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+	}
+
 }
 
 /* End of file home.php */

@@ -83,140 +83,159 @@
                         <input class="form-control" value="<?php echo $item->startEnd; ?>" name="startEnd">
 
                     </div>
+                <div class="form-group">
+                    <label>Meals</label>
+                    <?php if(isset($form_error)){ ?>
+                        <small class="pull-right input-form-error"> <?php echo form_error("meals"); ?></small>
+                    <?php } ?>
+                    <input class="form-control" value="<?php echo $item->meals; ?>" name="meals">
+
+                </div>
                     <div class="form-group">
                         <label>Hotels</label>
                         <?php if(isset($form_error)){ ?>
                             <small class="pull-right input-form-error"> <?php echo form_error("hotels"); ?></small>
                         <?php } ?>
-                        <input class="form-control" value="<?php echo $item->hotels; ?>" name="hotels">
-
-                    </div>
-                    <div class="form-group">
-                        <label>Meals</label>
-                        <?php if(isset($form_error)){ ?>
-                            <small class="pull-right input-form-error"> <?php echo form_error("meals"); ?></small>
-                        <?php } ?>
-                        <input class="form-control" value="<?php echo $item->meals; ?>" name="meals">
-
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Itinerary</label>
-                        <?php if(isset($form_error)){ ?>
-                            <small class="pull-right input-form-error"> <?php echo form_error("itinerary"); ?></small>
-                        <?php } ?>
                         <textarea
-                        name="itinerary" 
+                        name="hotels" 
                         class="m-0" 
+
                         data-plugin="summernote" 
                         data-options="{height: 100}"
-                        >
-                        <?php echo $item->itinerary; ?>
+                        > <?php echo $item->hotels; ?>
                     </textarea>
-
                 </div>
 
                 <div class="form-group">
-                    <label>Inclusions</label>
+                    <label>Itinerary</label>
                     <?php if(isset($form_error)){ ?>
-                        <small class="pull-right input-form-error"> <?php echo form_error("inclusions"); ?></small>
+                        <small class="pull-right input-form-error"> <?php echo form_error("itinerary"); ?></small>
                     <?php } ?>
                     <textarea
-                    name="inclusions" 
+                    name="itinerary" 
                     class="m-0" 
                     data-plugin="summernote" 
                     data-options="{height: 100}"
                     >
-                    <?php echo $item->inclusions; ?>
+                    <?php echo $item->itinerary; ?>
                 </textarea>
 
             </div>
+
             <div class="form-group">
-                <label>exclusions</label>
+                <label>Inclusions</label>
                 <?php if(isset($form_error)){ ?>
-                    <small class="pull-right input-form-error"> <?php echo form_error("exclusions"); ?></small>
+                    <small class="pull-right input-form-error"> <?php echo form_error("inclusions"); ?></small>
                 <?php } ?>
                 <textarea
-                name="exclusions" 
+                name="inclusions" 
                 class="m-0" 
                 data-plugin="summernote" 
                 data-options="{height: 100}"
                 >
-                <?php echo $item->exclusions; ?>
+                <?php echo $item->inclusions; ?>
             </textarea>
 
         </div>
-
-
-
         <div class="form-group">
-            <label for="control-demo-6" class="">Tur Ayrıntılarını Nasıl Girmek İstersiniz?</label>
-            <div id="control-demo-6" class="">
-                <select class="form-control detail_type_select" name="detail_type">
-                    <option <?php echo (isset($item->detail_type) && $item->detail_type == "auto") ? "selected" : ""; ?> value="auto">Otomatik oluştur</option>
-                    <option <?php echo (isset($item->detail_type) && $item->detail_type == "manual") ? "selected" : ""; ?> value="manual">Kendim gireceğim</option>
-                    <option <?php echo (isset($item->detail_type) && $item->detail_type == "overwrite") ? "selected" : ""; ?> value="overwrite">Ekstra bilgi gireceğim</option>
-
-                </select>
-            </div>
-        </div><!-- .form-group -->
-
-        <?php if(isset($form_error)){ ?>
-
-           <div class="form-group auto_container" style="display: <?php echo ($detail_type == "auto") ? "block" : "none"; ?>">
-
-             <label>Tur Ayrıntıları</label>
-             <?php if(isset($form_error)){ ?>
-                <small class="pull-right input-form-error"> <?php echo form_error("auto"); ?></small>
-            <?php } ?> 
-            <textarea name="manual_tour_details" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
-                <?php echo $item->all_details; ?></textarea>
-            </div>
-
-
-            <div class="form-group manual_container" style="display: <?php echo ($item->detail_type == "manual") ? "block" : "none"; ?>" >    
-                <label>Tur Ayrıntıları</label>
-                <?php if(isset($form_error)){ ?>
-                    <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
-                <?php } ?> 
-                <textarea name="manual_tour_details" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
-                    <?php echo $item->all_details; ?></textarea>
-
-                </div>
-
-                <div class="form-group overwrite_container" style="display: <?php echo ($item->detail_type == "overwrite") ? "block" : "none"; ?>">   
-                  <label>Tur Ayrıntıları</label>
-                  <?php if(isset($form_error)){ ?>
-                    <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
-                <?php } ?>
-                <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote"  data-options="{height: 250}"></textarea>
-
-            </div>
-        <?php } else { ?>
-
-            <div class="form-group auto_container">
-             <textarea name="auto" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
-                <?php echo $item->all_details; ?></textarea>
-            </div>
-
-            <div class="form-group manual_container">
-                <label>Tur Ayrıntıları</label>
-                <?php if(isset($form_error)){ ?>
-                    <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
-                <?php } ?>
-                <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
-
-            </div>
-            <div class="form-group overwrite_container">
-             <label>Tur Ayrıntıları</label>
-             <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
-             <?php if(isset($form_error)){ ?>
-                <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
+            <label>Exclusions</label>
+            <?php if(isset($form_error)){ ?>
+                <small class="pull-right input-form-error"> <?php echo form_error("exclusions"); ?></small>
             <?php } ?>
+            <textarea
+            name="exclusions" 
+            class="m-0" 
+            data-plugin="summernote" 
+            data-options="{height: 100}"
+            >
+            <?php echo $item->exclusions; ?>
+        </textarea>
+
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <?php if(isset($form_error)){ ?>
+            <small class="pull-right input-form-error"> <?php echo form_error("price"); ?></small>
+        <?php } ?>
+        <textarea
+        name="price" 
+        class="m-0" 
+        data-plugin="summernote" 
+        data-options="{height: 100}"
+        >
+    </textarea>
+</div>
+
+
+<div class="form-group">
+    <label for="control-demo-6" class="">Tur Ayrıntılarını Nasıl Girmek İstersiniz?</label>
+    <div id="control-demo-6" class="">
+        <select class="form-control detail_type_select" name="detail_type">
+            <option <?php echo (isset($item->detail_type) && $item->detail_type == "auto") ? "selected" : ""; ?> value="auto">Otomatik oluştur</option>
+            <option <?php echo (isset($item->detail_type) && $item->detail_type == "manual") ? "selected" : ""; ?> value="manual">Kendim gireceğim</option>
+            <option <?php echo (isset($item->detail_type) && $item->detail_type == "overwrite") ? "selected" : ""; ?> value="overwrite">Ekstra bilgi gireceğim</option>
+
+        </select>
+    </div>
+</div><!-- .form-group -->
+
+<?php if(isset($form_error)){ ?>
+
+   <div class="form-group auto_container" style="display: <?php echo ($detail_type == "auto") ? "block" : "none"; ?>">
+
+     <label>Tur Ayrıntıları</label>
+     <?php if(isset($form_error)){ ?>
+        <small class="pull-right input-form-error"> <?php echo form_error("auto"); ?></small>
+    <?php } ?> 
+    <textarea name="manual_tour_details" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
+        <?php echo $item->all_details; ?></textarea>
+    </div>
+
+
+    <div class="form-group manual_container" style="display: <?php echo ($item->detail_type == "manual") ? "block" : "none"; ?>" >    
+        <label>Tur Ayrıntıları</label>
+        <?php if(isset($form_error)){ ?>
+            <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
+        <?php } ?> 
+        <textarea name="manual_tour_details" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
+            <?php echo $item->all_details; ?></textarea>
+
         </div>
+
+        <div class="form-group overwrite_container" style="display: <?php echo ($item->detail_type == "overwrite") ? "block" : "none"; ?>">   
+          <label>Tur Ayrıntıları</label>
+          <?php if(isset($form_error)){ ?>
+            <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
+        <?php } ?>
+        <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote"  data-options="{height: 250}"></textarea>
+
+    </div>
+<?php } else { ?>
+
+    <div class="form-group auto_container">
+     <textarea name="auto" class="m-0" data-plugin="summernote"   data-options="{height: 250}"> 
+        <?php echo $item->all_details; ?></textarea>
+    </div>
+
+    <div class="form-group manual_container">
+        <label>Tur Ayrıntıları</label>
+        <?php if(isset($form_error)){ ?>
+            <small class="pull-right input-form-error"> <?php echo form_error("manual_tour_details"); ?></small>
+        <?php } ?>
+        <textarea name="manual_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+
+    </div>
+    <div class="form-group overwrite_container">
+     <label>Tur Ayrıntıları</label>
+     <textarea name="overwrite_tour_details" class="m-0" data-plugin="summernote" data-options="{height: 250}"></textarea>
+     <?php if(isset($form_error)){ ?>
+        <small class="pull-right input-form-error"> <?php echo form_error("overwrite_tour_details"); ?></small>
     <?php } ?>
-    <button type="submit" class="btn btn-primary btn-xs btn-outline">Güncelle</button>
-    <a href="<?php echo base_url("tours"); ?>" class="btn btn-xs btn-danger btn-outline">İptal</a>
+</div>
+<?php } ?>
+<button type="submit" class="btn btn-primary btn-xs btn-outline">Güncelle</button>
+<a href="<?php echo base_url("tours"); ?>" class="btn btn-xs btn-danger btn-outline">İptal</a>
 </form>
 </div><!-- .widget-body -->
 </div><!-- .widget -->

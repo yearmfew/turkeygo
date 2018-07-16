@@ -74,6 +74,7 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("itinerary", "Itinerary", "required");			
 			$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
 			$this->form_validation->set_rules("exclusions", "Exclusions", "required");			
+			$this->form_validation->set_rules("price", "Price", "required");			
 			$this->form_validation->set_rules("date", "Date", "required|trim");
 			$this->form_validation->set_rules("country", "Country", "required|trim");
 			$this->form_validation->set_rules("city", "City", "required|trim");
@@ -99,6 +100,7 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 			$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
 			$this->form_validation->set_rules("exclusions", "Exclusions", "required");	
+			$this->form_validation->set_rules("price", "Price", "required");			
 			$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
 			$this->form_validation->set_rules("date", "Date", "required|trim");
 			$this->form_validation->set_rules("country", "Country", "required|trim");
@@ -122,6 +124,7 @@ class tours extends CI_Controller {
 			$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 			$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
 			$this->form_validation->set_rules("exclusions", "Exclusions", "required");	
+			$this->form_validation->set_rules("price", "Price", "required");			
 			$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
 			$this->form_validation->set_rules("date", "Date", "required|trim");
 			$this->form_validation->set_rules("country", "Country", "required|trim");
@@ -159,19 +162,20 @@ class tours extends CI_Controller {
 						"title"     	=> $this->input->post("title"),
 						"url"           => convertToSEO($this->input->post("title")),
 						"tour_type"		=> $this->input->post("tour_type"),
-						"highlights"     	=> $this->input->post("highlights"),
+						"highlights"    => $this->input->post("highlights"),
 						"itinerary"     => $this->input->post("itinerary"),
-						"inclusions"     => $this->input->post("inclusions"),
-						"exclusions"     => $this->input->post("exclusions"),
+						"inclusions"    => $this->input->post("inclusions"),
+						"exclusions"    => $this->input->post("exclusions"),
+						"price"     	=> $this->input->post("price"),
 						"all_details"   => "auto", 
 						"detail_type"	=>$this->input->post("detail_type"),  
-						"date"		=> $this->input->post("date"),
+						"date"		  	=> $this->input->post("date"),
 						"country"		=> $this->input->post("country"),
-						"city"		=> $this->input->post("city"),
+						"city"			=> $this->input->post("city"),
 						"duration"		=> $this->input->post("duration"),
 						"startEnd"		=> $this->input->post("startEnd"),
 						"hotels"		=> $this->input->post("hotels"),
-						"meals"		=> $this->input->post("meals"),                
+						"meals"			=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
@@ -183,19 +187,20 @@ class tours extends CI_Controller {
 						"title"     	=> $this->input->post("title"),
 						"url"           => convertToSEO($this->input->post("title")),
 						"tour_type"		=> $this->input->post("tour_type"),
-						"highlights"     	=> $this->input->post("highlights"),
+						"highlights"    => $this->input->post("highlights"),
 						"itinerary"     => $this->input->post("itinerary"),
-						"inclusions"     => $this->input->post("inclusions"),
-						"exclusions"     => $this->input->post("exclusions"),
+						"inclusions"    => $this->input->post("inclusions"),
+						"exclusions"    => $this->input->post("exclusions"),
+						"price"     	=> $this->input->post("price"),
 						"all_details"   => $this->input->post("manual_tour_details"),                  
 						"detail_type"	=>$this->input->post("detail_type"),   
-						"date"		=> $this->input->post("date"),
+						"date"			=> $this->input->post("date"),
 						"country"		=> $this->input->post("country"),
-						"city"		=> $this->input->post("city"),
+						"city"			=> $this->input->post("city"),
 						"duration"		=> $this->input->post("duration"),
 						"startEnd"		=> $this->input->post("startEnd"),
 						"hotels"		=> $this->input->post("hotels"),
-						"meals"		=> $this->input->post("meals"),               
+						"meals"			=> $this->input->post("meals"),               
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
@@ -206,19 +211,20 @@ class tours extends CI_Controller {
 						"title"     	=> $this->input->post("title"),
 						"url"           => convertToSEO($this->input->post("title")),
 						"tour_type"		=> $this->input->post("tour_type"),
-						"highlights"     	=> $this->input->post("highlights"),
+						"highlights"    => $this->input->post("highlights"),
 						"itinerary"     => $this->input->post("itinerary"),
-						"inclusions"     => $this->input->post("inclusions"),
-						"exclusions"     => $this->input->post("exclusions"),
+						"inclusions"    => $this->input->post("inclusions"),
+						"exclusions"    => $this->input->post("exclusions"),
+						"price"     	=> $this->input->post("price"),
 						"all_details"   => $this->input->post("overwrite_tour_details"),                  
 						"detail_type"	=>$this->input->post("detail_type"),  
-						"date"		=> $this->input->post("date"),
+						"date"			=> $this->input->post("date"),
 						"country"		=> $this->input->post("country"),
-						"city"		=> $this->input->post("city"),
+						"city"			=> $this->input->post("city"),
 						"duration"		=> $this->input->post("duration"),
 						"startEnd"		=> $this->input->post("startEnd"),
 						"hotels"		=> $this->input->post("hotels"),
-						"meals"		=> $this->input->post("meals"),                
+						"meals"			=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
 						"createdAt"     => date("Y-m-d H:i:s"),
@@ -313,6 +319,7 @@ class tours extends CI_Controller {
 				$this->form_validation->set_rules("itinerary", "Itinerary", "required");			
 				$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
 				$this->form_validation->set_rules("exclusions", "Exclusions", "required");			
+				$this->form_validation->set_rules("price", "Price", "required");			
 				$this->form_validation->set_rules("date", "Date", "required|trim");
 				$this->form_validation->set_rules("country", "Country", "required|trim");
 				$this->form_validation->set_rules("city", "City", "required|trim");
@@ -337,7 +344,8 @@ class tours extends CI_Controller {
 				$this->form_validation->set_rules("highlights", "Highlights", "required|trim");
 				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 				$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
-				$this->form_validation->set_rules("exclusions", "Exclusions", "required");					
+				$this->form_validation->set_rules("exclusions", "Exclusions", "required");	
+				$this->form_validation->set_rules("price", "Price", "required");					
 				$this->form_validation->set_rules("manual_tour_details", "Tur Ayrıntıları", "required|trim");
 				$this->form_validation->set_rules("date", "Date", "required|trim");
 				$this->form_validation->set_rules("country", "Country", "required|trim");
@@ -360,7 +368,8 @@ class tours extends CI_Controller {
 				$this->form_validation->set_rules("highlights", "Highlights", "required|trim");
 				$this->form_validation->set_rules("itinerary", "Itinerary", "required|trim");
 				$this->form_validation->set_rules("inclusions", "Inclusions", "required");			
-				$this->form_validation->set_rules("exclusions", "Exclusions", "required");	
+				$this->form_validation->set_rules("exclusions", "Exclusions", "required");
+				$this->form_validation->set_rules("price", "Price", "required");					
 				$this->form_validation->set_rules("overwrite_tour_details", "Tur Ayrıntılarını Giriniz", "required|trim");
 				$this->form_validation->set_rules("date", "Date", "required|trim");
 				$this->form_validation->set_rules("country", "Country", "required|trim");
@@ -393,6 +402,7 @@ class tours extends CI_Controller {
 						"itinerary"     => $this->input->post("itinerary"),
 						"inclusions"     => $this->input->post("inclusions"),
 						"exclusions"     => $this->input->post("exclusions"),
+						"price"     => $this->input->post("price"),
 						"all_details"   => "auto", 
 						"detail_type"	=>$this->input->post("detail_type"),  
 						"date"		=> $this->input->post("date"),
@@ -417,6 +427,7 @@ class tours extends CI_Controller {
 						"itinerary"     => $this->input->post("itinerary"),
 						"inclusions"     => $this->input->post("inclusions"),
 						"exclusions"     => $this->input->post("exclusions"),
+						"price"     => $this->input->post("price"),
 						"all_details"   => $this->input->post("manual_tour_details"),                  
 						"detail_type"	=>$this->input->post("detail_type"),   
 						"date"		=> $this->input->post("date"),
@@ -440,6 +451,7 @@ class tours extends CI_Controller {
 						"itinerary"     => $this->input->post("itinerary"),
 						"inclusions"     => $this->input->post("inclusions"),
 						"exclusions"     => $this->input->post("exclusions"),
+						"price"     => $this->input->post("price"),
 						"all_details"   => $this->input->post("overwrite_tour_details"),                  
 						"detail_type"	=>$this->input->post("detail_type"),  
 						"date"		=> $this->input->post("date"),

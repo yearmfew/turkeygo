@@ -8,7 +8,7 @@
 	
 	
 	<?php $this->load->view("includes/sidebar"); ?>
-	<?php $this->load->view("tour_details_v/content"); ?>
+	<?php $this->load->view("{$viewFolder}/content"); ?>
 
 	
 

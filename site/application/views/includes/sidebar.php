@@ -46,12 +46,10 @@
 			<div id="side-footer">
 				<!-- Social icons -->	
 				<ul class="social-icons">
-					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-					<li><a href="#"><i class="fa fa-flickr"></i></a></li>
-					<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+					<li><a href="<?php echo $settings->facebook; ?> "><i class="fa fa-facebook"></i></a></li>
+					<li><a href="<?php echo $settings->twitter; ?>"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="<?php echo $settings->instagram; ?>"><i class="fa fa-instagram"></i></a></li>
+					<li><a href="<?php echo $settings->linkedin; ?>"><i class="fa fa-linkedin"></i></a></li>
 				</ul>
 				<!-- /Social icons -->	
 				<div id="copyright">

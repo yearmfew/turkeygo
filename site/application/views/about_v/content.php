@@ -1,4 +1,4 @@
-		      <?php $settings= get_settings(); ?>
+<?php $settings= get_settings(); ?>
 		<div id="main-content"> 
 			<div class="page-wrapper regular-page">
 				<div class="container">
@@ -20,7 +20,7 @@
 								SLOGAN GİRİLECEK BU KISMA
 							</p>	
 							<p>
-								<?php echo $settings->about_us; ?>
+								<?php echo $item->about_us; ?>
 
 							</p>
 						</div>

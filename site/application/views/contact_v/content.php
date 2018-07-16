@@ -1,4 +1,5 @@
-<?php $settings= get_settings(); ?>
+<?php $settings= get_settings();
+/*print_r($settings); die();*/ ?>
 <div id="main-content" class="abs dark-template">
 	<div class="page-wrapper">
 

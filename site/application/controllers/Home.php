@@ -112,6 +112,8 @@ class Home extends CI_Controller {
 	{
 		$viewData = new stdClass();
 		$viewData->viewFolder = "about_v";
+		$this->load->model("pages_model");
+		$viewData->item = $this->pages_model->get();
 		$this->load->view("$viewData->viewFolder/index", $viewData);
 
 	}
@@ -120,6 +122,8 @@ class Home extends CI_Controller {
 	{
 		$viewData = new stdClass();
 		$viewData->viewFolder = "contact_v";
+	/*	$this->load->model("pages_model");
+		$viewData->item = $this->pages_model->get();*/
 		$this->load->view("$viewData->viewFolder/index", $viewData);
 
 	}
@@ -144,27 +148,31 @@ class Home extends CI_Controller {
 
 	}
 
-
-	function my_mPDF(){
-
+	public function hotels($id){
 		$viewData = new stdClass();
-		$viewData->viewFolder = "contact_v";
-		$filename = time()."_order.pdf";
-	
-
-		$html = $this->load->view('contact_v/index',$viewData,true);
-
-// unpaid_voucher is unpaid_voucher.php file in view directory and $data variable has infor mation that you want to render on view.
-
-		$this->load->library('M_pdf');
-
-		$this->m_pdf->pdf->WriteHTML($html);
-
-//download it D save F.
-
-		$this->m_pdf->pdf->Output("base_url()".$filename, "F");
+		$viewData->viewFolder = "hotels_v";
+		$this->load->model("tours_model");
+		$viewData->tour = $this->tours_model->get(
+			array(
+				"id"=> $id,
+			)
+		); 
+		
+		$this->load->view("$viewData->viewFolder/index", $viewData);
 	}
 
+	public function price($id){
+		$viewData = new stdClass();
+		$viewData->viewFolder = "price_v";
+		$this->load->model("tours_model");
+		$viewData->tour = $this->tours_model->get(
+			array(
+				"id"=> $id,
+			)
+		); 
+		
+		$this->load->view("$viewData->viewFolder/index", $viewData);
+	}
 
 }
 

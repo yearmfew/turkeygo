@@ -18,10 +18,10 @@
 							<div class="supervisor">
 								<div class="sv-avatar">
 									<img src="http://localhost/turkeygo/panel/uploads/settings_v/<?php echo $settings->logo; ?>" alt="staff image">
-									<!-- <a href="index.html"><img src="http://localhost/turkeygo/panel/uploads/settings_v/<?php echo $settings->logo; ?>" alt="logo"></a> -->
+								
 								</div>
 								<div class="sv-detail">
-									<h3 class="sv-name"><?php echo $settings->company_name; ?></h3>
+									<h3 class="sv-name"><?php echo $settings->company_name; ?></h3><br>
 									<ul class="list-iconed">
 										<li><i class="fa fa-thumb-tack"></i><?php echo $settings->address; ?></li>
 										<li><i class="fa fa-envelope"></i><?php echo $settings->email; ?></li>
@@ -56,7 +56,7 @@
 							<div class="tj-overlay vcenter-wrapper">
 								<div class="overlay-texts vcenter">
 									<h3 class="title"><?php echo $tour->title; ?></h3>
-									<h4 class="subtitle"><?php echo $tour->highlights; ?></h4>
+								
 								</div>
 							</div>
 							<!-- /Item Overlay -->	

@@ -40,7 +40,8 @@
 						<a href="<?php echo base_url("home/inclusions/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-info-circle "></i> Inclusions & Exclusions</a>
 						<a href="<?php echo base_url("home/itinerary/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-calendar "></i> Itinerary</a>
 						<a href="<?php echo base_url("home/all_details/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-globe "></i> All Details</a>
-						<a class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-eur "></i> Price</a>
+						<a href="<?php echo base_url("home/hotels/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-home "></i> Hotels</a>
+						<a href="<?php echo base_url("home/price/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon w250"><i class="fa fa-eur "></i> Price</a>
 					</div>
 				</div>
 				
@@ -84,7 +85,7 @@
 								</li>
 								<li>
 									<div class="list-label">Meals:</div>
-									<div class="list-des"><?php echo $tour->meals; ?></div>
+									<div class="list-des"> <?php echo $tour->meals; ?></div>
 								</li>
 								<li>
 									<div class="list-label">Duration:</div>
@@ -93,10 +94,12 @@
 							</ul>	
 
 
-						<a href="<?php echo base_url("home/inclusions/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-info-circle "></i> </a>
-						<a href="<?php echo base_url("home/itinerary/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-calendar "></i> </a>
-						<a href="<?php echo base_url("home/all_details/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-globe "></i> </a>
-						<a class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-eur "></i></a>
+							<a href="<?php echo base_url("home/inclusions/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-info-circle "></i> </a>
+							<a href="<?php echo base_url("home/itinerary/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-calendar "></i> </a>
+							<a href="<?php echo base_url("home/all_details/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-globe "></i> </a>
+							<a href="<?php echo base_url("home/hotels/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon"><i class="fa fa-home "></i></a>
+
+							<a href="<?php echo base_url("home/price/$tour->id"); ?>" class="btn btn-xs btn-toranj alt btn-icon "><i class="fa fa-eur "></i></a>
 
 							
 						</div>

@@ -13,6 +13,20 @@ $(document).ready(function() {
 
 })
 
+$(document).ready(function() {
+  $("#pdfDownloader2").click(function() {
+
+    var doc = new jsPDF('p', 'pt', 'a4', true);
+
+    doc.fromHTML($('#renderMe').get(0), 15, 15, {
+      'width': 500
+    }, function (dispose) {
+    doc.save('turkeygo.pdf');
+    });
+  });
+
+
+})
 
 
 	

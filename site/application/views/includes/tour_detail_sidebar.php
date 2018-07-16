@@ -1,10 +1,12 @@
+	      <?php $settings= get_settings(); ?>
+
 	<!-- Post sidebar -->
 	<div id="post-side" class="col-md-2">
 
 		<!-- Post meta -->
 		<div class="post-meta">
 			<div class="post-author-image">
-				<img src="assets/img/blog/author1.jpg" alt="">
+				<img src="http://localhost/turkeygo/panel/uploads/settings_v/<?php echo $settings->logo; ?>" alt="">
 			</div>
 			<div class="post-meta-inner">
 				<div class="post-date"><i class="fa fa-calendar-o list-icon"></i><?php echo $tour->startEnd; ?> <hr> </div>

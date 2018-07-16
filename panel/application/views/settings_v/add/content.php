@@ -39,6 +39,7 @@
 
                         <?php $this->load->view("$viewFolder/$subViewFolder/tabs/logo"); ?>
 
+
                     </div><!-- .tab-content  -->
                 </div><!-- .nav-tabs-horizontal -->
             </div><!-- .widget -->

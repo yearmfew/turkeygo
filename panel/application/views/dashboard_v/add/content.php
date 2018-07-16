@@ -1,1 +1,0 @@
-urun listesi content

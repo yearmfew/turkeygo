@@ -20,11 +20,11 @@ class Product extends CI_Controller {
 	public function index()
 	{
 		$viewData = new stdClass();
-// veri tabanından verilerin getirilmesi
+		// veri tabanından verilerin getirilmesi
 		$items = $this->product_model->get_all(
 			array(), "rank ASC");
 
-// view e gönderilecek değişkenlerin belirlenmesi
+		// view e gönderilecek değişkenlerin belirlenmesi
 
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "list";
@@ -38,7 +38,7 @@ class Product extends CI_Controller {
 	{
 
 		$viewData = new stdClass();
-	// view e gönderilecek değişkenlerin belirlenmesi
+		// view e gönderilecek değişkenlerin belirlenmesi
 		$viewData ->viewFolder 		= $this->viewFolder;
 		$viewData ->subViewFolder 	= "add";
 

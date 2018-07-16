@@ -29,13 +29,7 @@
                     <span>Kullanıcı Ayarları</span>
                   </a>
                 </li>
-                <li>
-                  <a class="text-color" href="#">
-                    <span class="m-r-xs"><i class="fa fa-gear"></i></span>
-                    <span>Settings</span>
-                  </a>
-                </li>
-                
+                             
                 <li role="separator" class="divider"></li>
                 <li>
                   <a class="text-color" href="<?php echo base_url("logout"); ?>">
@@ -56,7 +50,7 @@
       <ul class="app-menu">
 
        <li>
-        <a href="documentation.html">
+        <a href="http://localhost/turkeygo/site">
           <i class="menu-icon zmdi zmdi-view-web zmdi-hc-lg"></i>
           <span class="menu-text">Siteyi Görüntüle</span>
         </a>
@@ -84,12 +78,12 @@
       </li>
       
 
-      <li>
+  <!--     <li>
         <a href="<?php echo base_url("socialMedia"); ?> ">
           <i class="menu-icon zmdi zmdi-accounts-alt zmdi-hc-lg"></i>
           <span class="menu-text">Sosyal Medya</span>
         </a>
-      </li>
+      </li> -->
 
 
       <li>

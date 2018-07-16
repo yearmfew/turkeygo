@@ -1,5 +1,5 @@
-<div class="wrap p-t-0">
-  <footer class="app-footer">
+<div class="wrap p-t-0 fixed-bottom">
+  <footer class="app-footer fixed-bottom">
     <div class="clearfix">
       <ul class="footer-menu pull-right">
         <li><a href="javascript:void(0)">Careers</a></li>

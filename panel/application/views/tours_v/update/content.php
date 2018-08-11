@@ -163,7 +163,7 @@
         class="m-0" 
         data-plugin="summernote" 
         data-options="{height: 100}"
-        >
+        ><?php echo $item->price; ?>
     </textarea>
 </div>
 

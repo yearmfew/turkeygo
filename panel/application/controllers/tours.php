@@ -414,7 +414,6 @@ class tours extends CI_Controller {
 						"meals"		=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
-						"createdAt"     => date("Y-m-d H:i:s"),
 					);
 
 					break;
@@ -439,7 +438,6 @@ class tours extends CI_Controller {
 						"meals"		=> $this->input->post("meals"),               
 						"rank"      	=> 0,
 						"isActive"      => 1,
-						"createdAt"     => date("Y-m-d H:i:s"),
 					);
 					break;
 					case 'overwrite':
@@ -463,8 +461,6 @@ class tours extends CI_Controller {
 						"meals"		=> $this->input->post("meals"),                
 						"rank"      	=> 0,
 						"isActive"      => 1,
-						"createdAt"     => date("Y-m-d H:i:s"),
-
 					);
 					break;
 					default:
